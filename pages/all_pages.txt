@@ -1,8 +1,2 @@
 *** Settings ***
 
-Resource  main_page.txt
-Resource  create_new_package_page.txt
-Resource  payments_settings_page.txt
-Resource  user_profile_page.txt
-Resource  admin_page.txt
-Resource  profile_update_page.txt

@@ -2,7 +2,4 @@
 
 Documentation  This file represents all available high level keywords
 
-Resource  ui_keywords.txt
-Resource  mysql_keywords.txt
-Resource  ssh_keywords.txt
 Resource  http_keywords.txt

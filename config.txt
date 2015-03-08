@@ -28,11 +28,9 @@ ${ADMIN_PASS}  ms
 ${RESOLUTION_WIDTH}  1360
 ${RESOLUTION_HIGHT}  768
 
-${TEST_EMAIL_FROM}  noreply@shipstage.com
-
 #  ${SSH_KEY_PATH}  ../scripts/rsa_key
 ${SSH_KEY_PATH}  %{HOME}/.ssh/rsa_key
-${SSH_KEY_PWD}  Ge6meica
+${SSH_KEY_PWD}  Ge6234234meica
 
 ${LOGIN}  dmitriy
 ${PASSW}  passwordIC
