@@ -1,0 +1,9 @@
+robotframework==2.8.4
+robotframework-selenium2library==1.5.0
+pymongo==2.6.3
+robotframework-httplibrary==0.4.2
+PyMySQL==0.6.2
+robotframework-databaselibrary==0.6
+robotframework-imaplibrary==0.1.4
+robotframework-sshlibrary==2.1.1
+git+ssh://git@gitlab.mediasapiens.co:43222/robotframework-mongodb-library.git@d3598870dc84e34a8fd1c4744f50214a0e481fd9

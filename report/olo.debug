@@ -1,0 +1,123 @@
+==============================================================================
+20150309 00:31:10.703 - INFO - + START SUITE: Rest Test [ ]
+==============================================================================
+20150309 00:31:10.705 - INFO - +- START TEST: Initial request - Get Session_ID [ ]
+------------------------------------------------------------------------------
+20150309 00:31:10.706 - INFO - +-- START KW: RequestsLibrary.Create Session [ Leo | https://portal-leo.icontrol.com | verify=True ]
+20150309 00:31:10.706 - DEBUG - Creating session: Leo
+20150309 00:31:10.727 - INFO - Argument types are:
+<type 'unicode'>
+20150309 00:31:10.727 - INFO - +-- END KW: RequestsLibrary.Create Session (22)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+20150309 00:31:10.728 - INFO - +-- START KW: ${resp} = RequestsLibrary.Get Request [ Leo | /rest/icontrol/nw/150216yg624546 ]
+20150309 00:31:10.742 - INFO - Starting new HTTPS connection (1): portal-leo.icontrol.com
+20150309 00:31:11.925 - INFO - ${resp} = <Response [401]>
+20150309 00:31:11.925 - INFO - +-- END KW: ${resp} = RequestsLibrary.Get Request (1197)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+20150309 00:31:11.926 - INFO - +-- START KW: BuiltIn.Log [ ${resp.headers} ]
+20150309 00:31:11.926 - INFO - {'content-length': '386', 'x-xss-protection': '1; mode=block', 'content-language': 'en', 'content-encoding': 'gzip', 'set-cookie': 'JSESSIONID=421DF56B742D5A60DC3C0D29329328B7.leo; Path=/rest; Secure; HttpOnly', 'strict-transport-security': 'max-age=15768000; includeSubDomains', 'vary': 'Accept-Encoding', 'keep-alive': 'timeout=15, max=100', 'x-version': '5.5', 'connection': 'Keep-Alive', 'cache-control': 'no-cache', 'date': 'Sun, 08 Mar 2015 22:31:11 GMT', 'x-frame-options': 'SAMEORIGIN', 'content-type': 'text/html;charset=utf-8'}
+20150309 00:31:11.926 - INFO - +-- END KW: BuiltIn.Log (1)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+20150309 00:31:11.927 - INFO - +-- START KW: BuiltIn.Log [ ${resp.cookies} ]
+20150309 00:31:11.927 - INFO - <<class 'requests.cookies.RequestsCookieJar'>[<Cookie JSESSIONID=421DF56B742D5A60DC3C0D29329328B7.leo for portal-leo.icontrol.com/rest>]>
+20150309 00:31:11.927 - INFO - +-- END KW: BuiltIn.Log (0)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+20150309 00:31:11.927 - INFO - +-- START KW: ${session_id} = BuiltIn.Get Variable Value [ ${resp.headers['set-cookie'][:47]} ]
+20150309 00:31:11.928 - INFO - ${session_id} = JSESSIONID=421DF56B742D5A60DC3C0D29329328B7.leo
+20150309 00:31:11.928 - INFO - +-- END KW: ${session_id} = BuiltIn.Get Variable Value (1)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+20150309 00:31:11.928 - INFO - +-- START KW: BuiltIn.Convert To String [ ${session_id} ]
+20150309 00:31:11.928 - INFO - Argument types are:
+<type 'str'>
+20150309 00:31:11.929 - INFO - +-- END KW: BuiltIn.Convert To String (1)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+20150309 00:31:11.929 - INFO - +-- START KW: BuiltIn.Set Global Variable [ ${session_id} | ${session_id} ]
+20150309 00:31:11.929 - INFO - ${session_id} = JSESSIONID=421DF56B742D5A60DC3C0D29329328B7.leo
+20150309 00:31:11.929 - INFO - +-- END KW: BuiltIn.Set Global Variable (0)
+------------------------------------------------------------------------------
+20150309 00:31:11.930 - INFO - +- END TEST: Initial request - Get Session_ID (1227)
+------------------------------------------------------------------------------
+20150309 00:31:11.932 - INFO - +- START TEST: Get Requests [ ]
+------------------------------------------------------------------------------
+20150309 00:31:11.932 - INFO - +-- START KW: RequestsLibrary.Create Session [ Leo | https://portal-leo.icontrol.com | verify=True ]
+20150309 00:31:11.932 - DEBUG - Creating session: Leo
+20150309 00:31:11.933 - INFO - Argument types are:
+<type 'unicode'>
+20150309 00:31:11.933 - INFO - +-- END KW: RequestsLibrary.Create Session (1)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+20150309 00:31:11.933 - INFO - +-- START KW: ${headers} = Collections.Create Dictionary [ Cookie | ${session_id} | X-login | dmitriy | X-password | passwordIC ]
+20150309 00:31:11.934 - INFO - ${headers} = {u'X-password': u'passwordIC', u'X-login': u'dmitriy', u'Cookie': 'JSESSIONID=421DF56B742D5A60DC3C0D29329328B7.leo'}
+20150309 00:31:11.934 - INFO - +-- END KW: ${headers} = Collections.Create Dictionary (0)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+20150309 00:31:11.934 - INFO - +-- START KW: ${resp} = RequestsLibrary.Get Request [ Leo | /rest/icontrol/nw/150216yg624546 | headers=${headers} ]
+20150309 00:31:11.935 - INFO - Starting new HTTPS connection (1): portal-leo.icontrol.com
+20150309 00:31:12.899 - INFO - ${resp} = <Response [200]>
+20150309 00:31:12.899 - INFO - +-- END KW: ${resp} = RequestsLibrary.Get Request (965)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+20150309 00:31:12.900 - INFO - +-- START KW: BuiltIn.Should Be Equal As Strings [ ${resp.status_code} | 200 ]
+20150309 00:31:12.900 - INFO - Argument types are:
+<type 'int'>
+<type 'unicode'>
+20150309 00:31:12.900 - INFO - +-- END KW: BuiltIn.Should Be Equal As Strings (1)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+20150309 00:31:12.901 - INFO - +-- START KW: BuiltIn.Log [ ${resp.request.headers} ]
+20150309 00:31:12.901 - INFO - {'Accept-Encoding': 'gzip, deflate', 'X-login': u'dmitriy', 'Accept': '*/*', 'User-Agent': 'python-requests/2.5.3 CPython/2.7.6 Darwin/14.1.0', 'Connection': 'keep-alive', 'Cookie': 'JSESSIONID=421DF56B742D5A60DC3C0D29329328B7.leo', 'X-password': u'passwordIC'}
+20150309 00:31:12.901 - INFO - +-- END KW: BuiltIn.Log (0)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+20150309 00:31:12.902 - INFO - +-- START KW: BuiltIn.Log [ ${resp.headers} ]
+20150309 00:31:12.902 - INFO - {'content-length': '377', 'x-xss-protection': '1; mode=block', 'content-language': 'en', 'content-encoding': 'gzip', 'connection': 'Keep-Alive', 'strict-transport-security': 'max-age=15768000; includeSubDomains', 'vary': 'Accept-Encoding', 'keep-alive': 'timeout=15, max=100', 'restsessionhostname': 'leo', 'x-version': '5.5', 'cache-control': 'no-cache', 'date': 'Sun, 08 Mar 2015 22:31:12 GMT', 'x-frame-options': 'SAMEORIGIN', 'content-type': 'text/xml;charset=UTF-8'}
+20150309 00:31:12.902 - INFO - +-- END KW: BuiltIn.Log (0)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+20150309 00:31:12.903 - INFO - +-- START KW: BuiltIn.Log [ ${resp.status_code} ]
+20150309 00:31:12.903 - INFO - 200
+20150309 00:31:12.903 - INFO - +-- END KW: BuiltIn.Log (1)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+20150309 00:31:12.903 - INFO - +-- START KW: BuiltIn.Log [ ${resp.cookies} ]
+20150309 00:31:12.904 - INFO - <<class 'requests.cookies.RequestsCookieJar'>[]>
+20150309 00:31:12.904 - INFO - +-- END KW: BuiltIn.Log (1)
+------------------------------------------------------------------------------
+20150309 00:31:12.904 - INFO - +- END TEST: Get Requests (974)
+------------------------------------------------------------------------------
+20150309 00:31:12.906 - INFO - +- START TEST: Get Requests Again [ ]
+------------------------------------------------------------------------------
+20150309 00:31:12.907 - INFO - +-- START KW: RequestsLibrary.Create Session [ Leo | https://portal-leo.icontrol.com | verify=True ]
+20150309 00:31:12.907 - DEBUG - Creating session: Leo
+20150309 00:31:12.907 - INFO - Argument types are:
+<type 'unicode'>
+20150309 00:31:12.907 - INFO - +-- END KW: RequestsLibrary.Create Session (0)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+20150309 00:31:12.908 - INFO - +-- START KW: ${headers} = Collections.Create Dictionary [ X-login | dmitriy | X-password | passwordIC | Cookie | ${session_id} ]
+20150309 00:31:12.908 - INFO - ${headers} = {u'X-password': u'passwordIC', u'X-login': u'dmitriy', u'Cookie': 'JSESSIONID=421DF56B742D5A60DC3C0D29329328B7.leo'}
+20150309 00:31:12.908 - INFO - +-- END KW: ${headers} = Collections.Create Dictionary (1)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+20150309 00:31:12.908 - INFO - +-- START KW: ${resp} = RequestsLibrary.Get Request [ Leo | /rest/icontrol/nw/150216yg624546 | headers=${headers} ]
+20150309 00:31:12.910 - INFO - Starting new HTTPS connection (1): portal-leo.icontrol.com
+20150309 00:31:13.801 - INFO - ${resp} = <Response [200]>
+20150309 00:31:13.801 - INFO - +-- END KW: ${resp} = RequestsLibrary.Get Request (893)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+20150309 00:31:13.802 - INFO - +-- START KW: BuiltIn.Should Be Equal As Strings [ ${resp.status_code} | 200 ]
+20150309 00:31:13.802 - INFO - Argument types are:
+<type 'int'>
+<type 'unicode'>
+20150309 00:31:13.803 - INFO - +-- END KW: BuiltIn.Should Be Equal As Strings (1)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+20150309 00:31:13.803 - INFO - +-- START KW: BuiltIn.Log [ ${resp.request.headers} ]
+20150309 00:31:13.804 - INFO - {'Accept-Encoding': 'gzip, deflate', 'X-login': u'dmitriy', 'Accept': '*/*', 'User-Agent': 'python-requests/2.5.3 CPython/2.7.6 Darwin/14.1.0', 'Connection': 'keep-alive', 'Cookie': 'JSESSIONID=421DF56B742D5A60DC3C0D29329328B7.leo', 'X-password': u'passwordIC'}
+20150309 00:31:13.804 - INFO - +-- END KW: BuiltIn.Log (1)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+20150309 00:31:13.804 - INFO - +-- START KW: BuiltIn.Log [ ${resp.headers} ]
+20150309 00:31:13.804 - INFO - {'content-length': '377', 'x-xss-protection': '1; mode=block', 'content-language': 'en', 'content-encoding': 'gzip', 'connection': 'Keep-Alive', 'strict-transport-security': 'max-age=15768000; includeSubDomains', 'vary': 'Accept-Encoding', 'keep-alive': 'timeout=15, max=100', 'restsessionhostname': 'leo', 'x-version': '5.5', 'cache-control': 'no-cache', 'date': 'Sun, 08 Mar 2015 22:31:13 GMT', 'x-frame-options': 'SAMEORIGIN', 'content-type': 'text/xml;charset=UTF-8'}
+20150309 00:31:13.804 - INFO - +-- END KW: BuiltIn.Log (0)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+20150309 00:31:13.805 - INFO - +-- START KW: BuiltIn.Log [ ${resp.status_code} ]
+20150309 00:31:13.805 - INFO - 200
+20150309 00:31:13.805 - INFO - +-- END KW: BuiltIn.Log (0)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+20150309 00:31:13.805 - INFO - +-- START KW: BuiltIn.Log [ ${resp.cookies} ]
+20150309 00:31:13.806 - INFO - <<class 'requests.cookies.RequestsCookieJar'>[]>
+20150309 00:31:13.806 - INFO - +-- END KW: BuiltIn.Log (1)
+------------------------------------------------------------------------------
+20150309 00:31:13.806 - INFO - +- END TEST: Get Requests Again (902)
+------------------------------------------------------------------------------
+20150309 00:31:13.808 - INFO - + END SUITE: Rest Test (3549)
+==============================================================================

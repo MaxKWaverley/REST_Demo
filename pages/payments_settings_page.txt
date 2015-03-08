@@ -1,0 +1,179 @@
+*** Settings ***
+
+Documentation  This is dashboard page of Mylogistic
+Resource  ../libs.txt
+
+*** Variables ***
+# Shipment settings elements
+${MENU_SHIPMENT_SETTINGS}  link=Shipment settings
+${SHIPMENT_SETTINGS_PICKUP_DATE}  id=id_pickup_date
+${SHIPMENT_SETTINGS_PICKUP_TIME}  id=id_pickup_time
+${SHIPMENT_SETTINGS_SAVE_BUTTON}  xpath=(//button[@type='submit'])[2]
+
+# Payments elements
+${PAYMENT_METHOD_DROPDOWN}  //*[@id='s2id_id_method']/a/span[2]
+${PRICE_PACKAGE}  id=total-price-gross
+${PAY_BY_PAYPAL_BUTTON}  name=submit
+${PAYPAL_EXISTED_BUTTON}  id=loadLogin
+${PAYPAL_EMAIL}  id=login_email
+${PAYPAL_PASS}  id=login_password
+${PAYPAL_SIGNIN_BUTTON}  id=submitLogin
+${PAYPAL_CONFIM_BUTTON}  id=continue_abovefold
+${TRANSACTION_COMPLETED_TEXT}  xpath=//h1
+${PAY_BY_SOFORT_BUTTON}  xpath=//input[@value='Pay with Sofortuberweisung']
+${PAY_BY_INVOICE_BUTTON}  xpath=//input[@value='create invoice']
+${SOFORT_COUNTRY}  id=MultipaysSessionSenderCountryId
+${SOFORT_BANK_CODE}  id=MultipaysSessionSenderBankCode
+${SOFORT_SUBMIT_BUTTON}  xpath=//button[@type='submit']
+${SOFORT_USERNAME}  id=BackendFormLOGINNAMEUSERID
+${SOFORT_PASS}  id=BackendFormUSERPIN
+${SOFORT_ACCOUNT_NUMBER}  id=MultipaysSessionSenderAccountNumberTechnical23456789
+${SOFORT_CAPTCHA}  id=BackendFormTan
+
+# Order elements
+${ORDER_BUTTON_IN_PACKAGE_DETAILS}  xpath=//a[contains(text(),'Order')]
+${ORDER_STATUS}  css=span.detail-section__info
+${ORDER_PAGE_PAYMENT_BUTTON}  xpath=//a[contains(text(),'Payment')]
+${PACKAGE_INFO_LASTSTATE}  css=span.detail-list__name
+
+*** Keywords ***
+
+# Shipment Settings
+
+Go to Shipment Settings
+  [Documentation]  Open Shipment settings link directly
+  Open Browser  ${HOME_URL}user/shipment/settings/
+
+Verify that Shipment settings is opened
+  Location Should Contain  /user/shipment/settings/
+
+Set Pickup Date in Shipment Settings
+  [Arguments]  ${text}
+  Select From List By Value  ${SHIPMENT_SETTINGS_PICKUP_DATE}  ${text}
+
+Set Pickup Time in Shipment Settings
+  [Arguments]  ${text}
+  Select From List By Value  ${SHIPMENT_SETTINGS_PICKUP_TIME}  ${text}
+
+Click Save button in Shipment Settings
+  Click Element  ${SHIPMENT_SETTINGS_SAVE_BUTTON}
+
+Verify that User Profile page is opened
+  Location Should Contain  /user/profile/
+
+Click Pickup Create button in Pickup page
+  Click Element  ${SHIPMENT_SETTINGS_SAVE_BUTTON}
+
+
+# Order section
+
+Click Order button in Package Details page
+  Click Element  ${ORDER_BUTTON_IN_PACKAGE_DETAILS}
+
+Verify that Order #1 is already paid. And amount is
+  [Arguments]  ${price}
+  Element Should Contain  ${ORDER_STATUS}  ${price}
+
+Click Payment button in Order Page
+  Click Element  ${ORDER_PAGE_PAYMENT_BUTTON}
+
+
+# Payments - General
+
+Click Payment Method drop-down
+  [Documentation]  Open Payment method drop-down box
+  Click Element  ${PAYMENT_METHOD_DROPDOWN}
+
+Select Sofortuberweisung Payment method
+  [Documentation]  Selects Sofortuberweisung Payment method from Payment method drop-down box and press Enter button in the end
+  Send ARROW_DOWN To Current Element
+  Send ENTER To Current Element
+
+Select Invoice Payment method
+  [Documentation]  Selects Invoice Payment method from Payment method drop-down box and press Enter button in the end
+  Send ARROW_DOWN To Current Element
+  Send ARROW_DOWN To Current Element
+  Send ENTER To Current Element
+
+Verify that actual payment price is
+  [Arguments]  ${price}
+  Element Should Contain  ${PRICE_PACKAGE}  ${price}
+
+Verify that Transaction is completed successfully
+  [Arguments]  ${text}
+  Wait Until Page Contains  ${text}  timeout=40 s
+
+
+# PayPal
+
+Click Payment by PayPal button
+  Click Element  ${PAY_BY_PAYPAL_BUTTON}
+
+Input PayPal email
+  [Arguments]  ${text}
+  Input Text  ${PAYPAL_EMAIL}  ${text}
+
+Input PayPal Password
+  [Arguments]  ${text}
+  Input Text  ${PAYPAL_PASS}  ${text}
+
+Click LogIn button in PayPal
+  Click Element  ${PAYPAL_SIGNIN_BUTTON}
+
+Click Confirm payment button
+  Click Element  ${PAYPAL_CONFIM_BUTTON}
+
+Select already existed account in PayPal
+  Click Element  ${PAYPAL_EXISTED_BUTTON}
+
+
+# Sofortuberweisung
+
+
+Click Payment by Sofort button
+  Click Element  ${PAY_BY_SOFORT_BUTTON}
+
+Click Sofort Submit button
+  Click Element  ${SOFORT_SUBMIT_BUTTON}
+
+Select Sofort Country
+  [Arguments]  ${text}
+  Select From List By Value  ${SOFORT_COUNTRY}  ${text}
+
+Input Bank Code in Sofort
+  [Arguments]  ${code}
+  Input Text  ${SOFORT_BANK_CODE}  ${code}
+
+Input Sofort Username
+  [Arguments]  ${text}
+  Input Text  ${SOFORT_USERNAME}  ${text}
+
+Input Sofort Pass
+  [Arguments]  ${text}
+  Input Text  ${SOFORT_PASS}  ${text}
+
+Click Sofort Account Number
+  Click Element  ${SOFORT_ACCOUNT_NUMBER}
+
+Input Sofort Captcha
+  [Arguments]  ${text}
+  Input Text  ${SOFORT_CAPTCHA}  ${text}
+
+
+# Invoice 
+
+Click Payment by Invoice button
+  Click Element  ${PAY_BY_INVOICE_BUTTON}
+  
+
+# UPS package states
+
+Get Package #1 number
+  [Documentation]  Returns UPS package number from current Package Info page
+  ${temp}=  Get Text  xpath=//h1
+  [Return]  ${temp}
+  
+Verify that Package Current State is
+  [Documentation]  Checks that latest UPS state of current package is the same as requested
+  [Arguments]  ${text}
+  Element Should Contain  ${PACKAGE_INFO_LASTSTATE}  ${text}

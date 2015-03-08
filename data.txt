@@ -1,0 +1,51 @@
+*** Settings ***
+
+Documentation  This file represents variables needed for tests
+
+*** Variables ***
+
+# Default discount price variable
+
+# Package size 
+${S}  1
+${M}  2
+${L}  3
+${XL}  4
+
+# Service code - UPS shipment type
+${STANDARD}  11
+${SAVER}  65
+${EXPRESS}  07
+
+# Customer type
+${TYPE_A}  1
+${TYPE_B}  2
+${TYPE_C}  3
+${TYPE_D}  4
+${TYPE_I}  5
+
+# Zones
+${ZONE_1}  1
+${ZONE_3}  3
+${ZONE_4}  4
+${ZONE_5}  5
+${ZONE_6}  6
+${ZONE_31}  31
+${ZONE_41}  41
+
+# 1. UPS National elements links
+${SST}  xpath=//td[3]
+${SEX}  xpath=//td[4]
+${SSA}  xpath=//td[5]
+
+${MST}  xpath=//tr[2]/td[3]
+${MEX}  xpath=//tr[2]/td[4]
+${MSA}  xpath=//tr[2]/td[5]
+
+${LST}  xpath=//tr[3]/td[3]
+${LEX}  xpath=//tr[3]/td[4]
+${LSA}  xpath=//tr[3]/td[5]
+
+${XST}  xpath=//tr[4]/td[3]
+${XEX}  xpath=//tr[4]/td[4]
+${XSA}  xpath=//tr[4]/td[5]

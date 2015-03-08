@@ -1,0 +1,49 @@
+*** Settings ***
+
+Documentation  This file represents high-level keywords for UI tests
+Resource  ../libs.txt
+
+*** Keywords ***
+
+Open Browser to myLogistic Home Page
+  [Documentation]  Defaul pre-requisite step for all test cases
+  [Arguments]  ${url}  ${browser}
+  Open Browser  ${url}  ${browser}
+#  Set Selenium Speed  .7
+  Set Window Size  ${RESOLUTION_WIDTH}  ${RESOLUTION_HIGHT}
+  Maximize Browser Window  
+  Title Should Be  Mylogistic
+
+Send ${key} To Current Element
+  [Documentation]  Simulating keyboard keypresses for active element
+  ${keys}=  Evaluate    selenium.webdriver.common.keys.Keys    selenium
+  ${s2l}=  Get Library Instance    Selenium2Library
+  ${actionchain module}=  Evaluate    selenium.webdriver.common.action_chains    selenium
+  ${action chain}=  Call Method    ${actionchain module}    ActionChains    ${s2l._current_browser()}
+  Call Method    ${action chain}    key_down    ${keys.${key}}
+  Sleep  0.5 
+  Call Method    ${action chain}    perform
+
+Sign In as an autotest user
+  [Documentation]  Default Sign-in procedure
+  Open Sign In form
+  Input Sign In Username  ${TEST_EMAIL}
+  Input Sign In Password  ${TEST_EMAIL_PASS}
+  Click Sign In button
+  Verify that Activity List is opened
+
+Sign In to direct link
+  [Documentation]  Sign-in procedure for any direct link
+  Maximize Browser Window
+  Input Sign In Username for direct link  ${TEST_EMAIL}
+  Input Sign In Password for direct link  ${TEST_EMAIL_PASS}
+  Click Sign In button for direct link
+  
+Sign In as an Admin in Admin page
+  [Documentation]  Sign-in admin user in Admin page
+  Open Browser  ${HOME_URL}admin/
+  Maximize Browser Window
+  Title Should Be  Log in | Mylogistic
+  Input admin login in sign in admin page
+  Input admin password in sign in admin page
+  Click Log In button in admin page

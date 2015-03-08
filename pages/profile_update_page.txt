@@ -1,0 +1,158 @@
+*** Settings ***
+
+Documentation  This is profile Update page of Mylogistic
+Resource  ../libs.txt
+
+*** Variables ***
+# Profile Update page elements
+${PROF_UPDATE_COMPANY}  name=company
+${PROF_UPDATE_FNAME}  name=first_name
+${PROF_UPDATE_LNAME}  name=last_name
+${PROF_UPDATE_PEXT}  name=phone_ext
+${PROF_UPDATE_PNUMBER}  name=phone_number
+${PROF_UPDATE_MEXT}  name=mobile_ext
+${PROF_UPDATE_MNUMBER}  name=mobile_number
+${PROF_UPDATE_FAX}  name=fax
+${PROF_UPDATE_TAX}  name=tax_number
+${PROF_UPDATE_ADDRESS}  name=address
+${PROF_UPDATE_IBAN}  name=iban_number
+${PROF_UPDATE_SWIFT}  name=swift_number
+${PROF_UPDATE_BNAME}  name=bank_name
+${PROF_UPDATE_BACCOUNT}  name=bank_account_holder
+${PROF_UPDATE_SUBMIT_BUTTON}  xpath=(//button[@type='submit'])[2]
+
+*** Keywords ***
+
+# Profile Update Page
+
+# Update Section
+
+Go to Profile Update page
+  [Documentation]  Open Profile Update link directly
+  Open Browser  ${HOME_URL}user/profile/update/
+
+Verify that Profile Update page is opened
+  Location Should Contain  /user/profile/update/
+
+Input Profile Update value - Company
+  [Arguments]  ${text}
+  Input Text  ${PROF_UPDATE_COMPANY}  ${text}
+
+Input Profile Update value - First Name
+  [Arguments]  ${text}
+  Input Text  ${PROF_UPDATE_FNAME}  ${text}
+
+Input Profile Update value - Last Name
+  [Arguments]  ${text}
+  Input Text  ${PROF_UPDATE_LNAME}  ${text}
+
+Input Profile Update value - Phone Ext
+  [Arguments]  ${text}
+  Input Text  ${PROF_UPDATE_PEXT}  ${text}
+  
+Input Profile Update value - Phone Number
+  [Arguments]  ${text}
+  Input Text  ${PROF_UPDATE_PNUMBER}  ${text}
+
+Input Profile Update value - Mobile Ext
+  [Arguments]  ${text}
+  Input Text  ${PROF_UPDATE_MEXT}  ${text}
+  
+Input Profile Update value - Mobile Number
+  [Arguments]  ${text}
+  Input Text  ${PROF_UPDATE_MNUMBER}  ${text}
+
+Input Profile Update value - Fax
+  [Arguments]  ${text}
+  Input Text  ${PROF_UPDATE_FAX}  ${text}
+
+Input Profile Update value - Tax
+  [Arguments]  ${text}
+  Input Text  ${PROF_UPDATE_TAX}  ${text}
+
+Input Profile Update value - Address
+  [Arguments]  ${text}
+  Input Text  ${PROF_UPDATE_ADDRESS}  ${text}
+
+Input Profile Update value - IBAN
+  [Arguments]  ${text}
+  Input Text  ${PROF_UPDATE_IBAN}  ${text}
+
+Input Profile Update value - Swift
+  [Arguments]  ${text}
+  Input Text  ${PROF_UPDATE_SWIFT}  ${text}
+
+Input Profile Update value - Bank Name
+  [Arguments]  ${text}
+  Input Text  ${PROF_UPDATE_BNAME}  ${text}
+
+Input Profile Update value - Bank Account Holder
+  [Arguments]  ${text}
+  Input Text  ${PROF_UPDATE_BACCOUNT}  ${text}
+
+Click Submit button on Update Profile page
+  Click Element  ${PROF_UPDATE_SUBMIT_BUTTON}
+
+
+# Verification section
+
+Verify that input field contains value  
+  [Arguments]  ${text}
+  Element Should Be Visible  xpath=//input[@value='${text}']
+
+Verify that Company on Update Profile is
+  [Arguments]  ${text}
+  Element Should Contain  ${PROF_UPDATE_COMPANY}  ${text}
+  
+Verify that First Name on Update Profile is
+  [Arguments]  ${text}
+  Element Should Contain  ${PROF_UPDATE_FNAME}  ${text}
+
+Verify that Last Name on Update Profile is
+  [Arguments]  ${text}
+  Element Should Contain  ${PROF_UPDATE_LNAME}  ${text}
+
+Verify that Ext Phone on Update Profile is
+  [Arguments]  ${text}
+  Element Should Contain  ${PROF_UPDATE_PEXT}  ${text}
+
+Verify that Phone Number on Update Profile is
+  [Arguments]  ${text}
+  Element Should Contain  ${PROF_UPDATE_PNUMBER}  ${text}
+
+Verify that Ext Mobile on Update Profile is
+  [Arguments]  ${text}
+  Element Should Contain  ${PROF_UPDATE_MEXT}  ${text}
+
+Verify that Mobile Number on Update Profile is
+  [Arguments]  ${text}
+  Element Should Contain  ${PROF_UPDATE_MNUMBER}  ${text}
+
+Verify that Fax on Update Profile is
+  [Arguments]  ${text}
+  Element Should Contain  ${PROF_UPDATE_FAX}  ${text}
+
+Verify that Tax on Update Profile is
+  [Arguments]  ${text}
+  Element Should Contain  ${PROF_UPDATE_TAX}  ${text}
+
+Verify that Address on Update Profile is
+  [Arguments]  ${text}
+  Element Should Contain  ${PROF_UPDATE_ADDRESS}  ${text}
+
+Verify that IBAN on Update Profile is
+  [Arguments]  ${text}
+  Element Should Contain  ${PROF_UPDATE_IBAN}  ${text}
+
+Verify that SWIFT on Update Profile is
+  [Arguments]  ${text}
+  Element Should Contain  ${PROF_UPDATE_SWIFT}  ${text}
+
+Verify that Bank Name on Update Profile is
+  [Arguments]  ${text}
+  Element Should Contain  ${PROF_UPDATE_BNAME}  ${text}
+
+Verify that Bank Account Holder on Update Profile is
+  [Arguments]  ${text}
+  Element Should Contain  ${PROF_UPDATE_BACCOUNT}  ${text}
+

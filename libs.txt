@@ -1,0 +1,21 @@
+*** Settings ***
+
+Documentation  This file loads all libs for project in one place.
+...            All another files such as pages load this file
+
+#Library  Selenium2Library  10  10  Take Screenshot
+Library  HttpLibrary.HTTP
+#Library  ImapLibrary
+# Connect to MySQL DB - Connect To Database Using Custom Params  pymysql  db='micecloud', user='root', host='localhost', port=33060
+#Library  DatabaseLibrary
+Library  SSHLibrary
+Library  RequestsLibrary
+Library  Collections
+
+*** Keywords ***
+
+Take Screenshot
+  Capture Page Screenshot  ${TEST NAME}.png
+
+
+

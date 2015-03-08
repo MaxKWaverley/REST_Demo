@@ -1,0 +1,193 @@
+*** Settings ***
+
+Documentation  This is dashboard page of Mylogistic
+Resource  ../libs.txt
+
+# Need to be done - Country and Service Code dropdown lists.
+
+*** Variables ***
+
+# Create New Package elements
+${CREATE_PACKAGE_BUTTON}  xpath=//a[contains(text(),'Create new package')]
+${RECEIVER_COMPANY}  name=to_company_name
+${RECEIVER_CONTACT}  name=to_contact_name
+${RECEIVER_PHONE}  name=to_phone
+${RECEIVER_EMAIL}  name=to_email
+${RECEIVER_COUNTRY_DROPDOWN}  xpath=//*[@id='s2id_id_to_country']/a/span[2]
+${RECEIVER_COUNTRY_INPUT}  xpath=//*[@id='s2id_autogen2_search']
+${RECEIVER_ADDRESS}  name=to_address
+${RECEIVER_CITY}  name=to_city
+${RECEIVER_PCODE}  name=to_postal_code
+${PACKAGE_LENGTH}  name=length
+${PACKAGE_HEIGHT}  name=height
+${PACKAGE_WIDTH}  name=width
+${PACKAGE_WEIGHT}  name=weight
+${FROM_TO_SWAP_BUTTON}  xpath=(//button[@type='button'])[3]
+${UPS_SERVICE_DROPDOWN}  xpath=//*[@id='s2id_id_service_code']/a/span[2]
+${FREE_REFERENCE}  name=free_reference
+${IS_B2C}  xpath=//input[@id='id_is_b2c']/../label
+${UPS_CARBON}  xpath=//input[@id='id_use_ups_carbon']/../label
+${IS_SATURDAY_DELIVERY}  xpath=//input[@id='id_is_saturday_delivery']/../label
+${HEIGHT_INSURANCE_CHECKBOX}  xpath=//input[@id='fake_height_insurance']/../label
+${HEIGHT_INSURANCE_INPUT}  name=height_insurance
+${PACKAGE_CREATE_BUTTON}  xpath=(//button[@type='submit'])[2]
+
+# Package details elements
+${SAVE_GO_PACKAGE_LIST}  name=submit-package-list
+${PACKAGE_DETAILS1}  xpath=//a[contains(text(),'Package')]
+${PACKAGE_PRICE1}  xpath=//ul[2]/li[1]
+${PACKAGE_WEIGHT1}  xpath=//ul[2]/li[2]
+${PACKAGE_NAME1}  css=span.detail-section__info
+${ADD_TO_CART_BUTTON}  xpath=(//input[@id='add-to-cart'])[2]
+${CART_BUTTON}  xpath=//button[@type='button']
+${CHECKOUT_BUTTON}  xpath=//a[contains(text(),'Checkout')]
+${USER_MENU_BUTTON}  xpath=//div[3]/button
+
+*** Keywords ***
+
+# Create New Package
+
+Click Create New Package button
+  Click Element  ${CREATE_PACKAGE_BUTTON}
+
+Verify that Create Package page is opened
+  Location Should Contain  /package/create/new/
+
+Select to_country
+  [Documentation]  This is test case enter country name into receiver country dropdown box and press enter in the end  
+  [Arguments]  ${text}
+  Click Element  ${RECEIVER_COUNTRY_DROPDOWN}
+  Input Text  ${RECEIVER_COUNTRY_INPUT}  ${text}
+  Press Key  ${RECEIVER_COUNTRY_INPUT}  \\13
+
+Input package to_company
+  [Arguments]  ${text}
+  Input Text  ${RECEIVER_COMPANY}  ${text}
+
+Input package to_contact
+  [Arguments]  ${text}
+  Input Text  ${RECEIVER_CONTACT}  ${text}
+
+Input package to_phone
+  [Arguments]  ${text}
+  Input Text  ${RECEIVER_PHONE}  ${text}
+
+Input package to_email
+  [Arguments]  ${text}
+  Input Text  ${RECEIVER_EMAIL}  ${text}
+
+Input package to_address
+  [Arguments]  ${text}
+  Input Text  ${RECEIVER_ADDRESS}  ${text}
+
+Input package to_city
+  [Arguments]  ${text}
+  Input Text  ${RECEIVER_CITY}  ${text}
+
+Input package to_postal
+  [Arguments]  ${text}
+  Input Text  ${RECEIVER_PCODE}  ${text}
+
+Click From To Swap Button
+  [Documentation]  Click button that change From and To adresses vise versa
+  Click Element  ${FROM_TO_SWAP_BUTTON}
+
+Input package length
+  [Arguments]  ${text}
+  Input Text  ${PACKAGE_LENGTH}  ${text}
+
+Input package height
+  [Arguments]  ${text}
+  Input Text  ${PACKAGE_HEIGHT}  ${text}
+
+Input package width
+  [Arguments]  ${text}
+  Input Text  ${PACKAGE_WIDTH}  ${text}
+
+Input package weight
+  [Arguments]  ${text}
+  Input Text  ${PACKAGE_WEIGHT}  ${text}
+
+Click UPS Shipment Type drop-down
+  [Documentation]  Open UPS Shipment dropdown box
+  Click Element  ${UPS_SERVICE_DROPDOWN}
+
+Select UPS Express Shipment Type
+  [Documentation]  Select UPS Express shipment type in UPS Shipment dropdown box
+  Send ARROW_DOWN To Current Element
+  Send ENTER To Current Element
+
+Select UPS Saver Shipment Type
+  [Documentation]  Select UPS Saver shipment type in UPS Shipment dropdown box
+  Send ARROW_DOWN To Current Element
+  Send ARROW_DOWN To Current Element
+  Send ENTER To Current Element
+
+Input package free_reference
+  [Arguments]  ${text}
+  Input Text  ${FREE_REFERENCE}  ${text}
+
+Check is_B2C checkbox
+  Click Element  ${IS_B2C}
+
+Check UPS Carbon checkbox
+  Click Element  ${UPS_CARBON}
+
+Check Saturday Delivery checkbox
+  Click Element  ${IS_SATURDAY_DELIVERY}
+
+Check Height Insurance checkbox
+  Click Element  ${HEIGHT_INSURANCE_CHECKBOX}
+
+Input Height Insurance value
+  [Arguments]  ${text}
+  Input Text  ${HEIGHT_INSURANCE_INPUT}  ${text}
+
+Click Create button
+  Click Element  ${PACKAGE_CREATE_BUTTON}
+
+Verify that package is valid
+  [Documentation]  Searches "Package is valid" text on the page 
+  Page Should Contain  Package is valid
+
+Click Save and Go to Package List button
+  Click Element  ${SAVE_GO_PACKAGE_LIST}
+
+
+# Package Detials verification
+
+Verify that Package Info is opened
+#  Location Should Contain  /package/info/
+  Wait Until Page Contains  Create label  timeout=40 s
+
+
+Open Package #1 Details
+  [Documentation]  Open last updated package (first from top of the list)
+  Click Element  ${PACKAGE_DETAILS1}
+
+Check that Package contains correct price
+  [Arguments]  ${price}
+  Element Should Contain  ${PACKAGE_PRICE1}  ${price}
+
+Check that Package name is correct
+  [Arguments]  ${text}
+  Element Should Contain  ${PACKAGE_NAME1}  ${text}
+
+Check that Package weight is correct
+  [Arguments]  ${text}
+  Element Should Contain  ${PACKAGE_WEIGHT1}  ${text}
+
+
+# Cart and Pickup
+
+Click Add to Cart button
+  Click Element  ${ADD_TO_CART_BUTTON}
+
+Click Cart button
+  Click Element  ${CART_BUTTON}
+
+Click Checkout button
+  Click Element  ${CHECKOUT_BUTTON}
+
+Verify that Pickup Create page is opened
+  Location Should Contain  /pickup/create/

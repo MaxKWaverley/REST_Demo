@@ -1,0 +1,209 @@
+*** Settings ***
+
+Documentation  Test suite for Condition Inquiry scenario
+Resource  ../config.txt
+
+#Test Setup  User Profile opening precondition
+Test Teardown  Close All Browsers
+
+*** Keywords ***
+
+User Profile opening precondition
+  Go to User Profile page
+  Sign In to direct link
+
+*** Test Cases ***
+
+# Setup A type customer price, for debug purposes
+
+Sending Condition Inquiry for default type customer (A type) - will be accepted
+  [Tags]  temp
+  User Profile opening precondition
+  Click Apply to special conditions button on User Profile page
+  Verify that Condition Inquiry page is opened
+  Sleep  1
+  Set value for Standard National Packages  1-25
+  Set value for Express National Packages  1-25
+  Set value for International Packages  1-50
+  Input Condition Inquiry title  Condition Inquiry Test Title
+  Input Condition Inquiry message  Some Test Text ~!@#$%^&*()
+  Click Condition Inquiry Send button
+  Sleep  1
+  Verify that Condition Inquiry was sent successfully
+
+Accept condition inquiry for customer (A type)
+  [Tags]  temp
+  Sign In as an Admin in Admin page
+  Click Condition inquirys link in admin panel
+  Click latest condition inquiry from the condition inquiry list
+  Set New Condition in current condition inquiry request  ${TYPE_A}
+  Check Read & Check checkbox in current condition inquiry
+  Click Save button in current condition request
+  Verify that condition was changed successfully in admin panel
+
+Condition Inquiry - activating "Accept" link in change condition confirmation email (returning to default type)
+  [Tags]  temp
+  Email change condition confirmation for unseen email  accept  /user/condition/request/accepted/
+
+
+# Verification default settings
+
+Verify default user condition
+  [Tags]  smoke
+  User Profile opening precondition
+  Check that Conditions is  1 - 25 packages
+
+# Package price verification test cases
+# Small Packages
+
+Verify default discount prices for A type customer and Small packages and UPS Standard
+  [Tags]  smoke
+  User Profile opening precondition
+  Connect MySQL for MyLogistic
+  ${DISPLAYED_PRICE}=  Get default price price for Zone 1 and  ${SST}
+  ${MYSQL_PRICE}=  Get default discount price for  ${ZONE_1}  ${S}  ${STANDARD}  ${TYPE_A}
+  Compare displayed price with MySQL price  ${DISPLAYED_PRICE}  ${MYSQL_PRICE}
+  
+Verify default discount prices for A type customer and Small packages and UPS Express
+  [Tags]  smoke
+  User Profile opening precondition
+  Connect MySQL for MyLogistic
+  ${DISPLAYED_PRICE}=  Get default price price for Zone 1 and  ${SEX}
+  ${MYSQL_PRICE}=  Get default discount price for  ${ZONE_1}  ${S}  ${EXPRESS}  ${TYPE_A}
+  Compare displayed price with MySQL price  ${DISPLAYED_PRICE}  ${MYSQL_PRICE}
+
+Verify default discount prices for A type customer and Small packages and UPS Saver
+  [Tags]  smoke
+  User Profile opening precondition
+  Connect MySQL for MyLogistic
+  ${DISPLAYED_PRICE}=  Get default price price for Zone 1 and  ${SSA}
+  ${MYSQL_PRICE}=  Get default discount price for  ${ZONE_1}  ${S}  ${SAVER}  ${TYPE_A}
+  Compare displayed price with MySQL price  ${DISPLAYED_PRICE}  ${MYSQL_PRICE}
+
+
+# Medium Packages
+
+Verify default discount prices for A type customer and Medium packages and UPS Standard
+  [Tags]  smoke
+  User Profile opening precondition
+  Connect MySQL for MyLogistic
+  ${DISPLAYED_PRICE}=  Get default price price for Zone 1 and  ${MST}
+  ${MYSQL_PRICE}=  Get default discount price for  ${ZONE_1}  ${M}  ${STANDARD}  ${TYPE_A}
+  Compare displayed price with MySQL price  ${DISPLAYED_PRICE}  ${MYSQL_PRICE}
+  
+Verify default discount prices for A type customer and Medium packages and UPS Express
+  [Tags]  smoke
+  User Profile opening precondition
+  Connect MySQL for MyLogistic
+  ${DISPLAYED_PRICE}=  Get default price price for Zone 1 and  ${MEX}
+  ${MYSQL_PRICE}=  Get default discount price for  ${ZONE_1}  ${M}  ${EXPRESS}  ${TYPE_A}
+  Compare displayed price with MySQL price  ${DISPLAYED_PRICE}  ${MYSQL_PRICE}
+
+Verify default discount prices for A type customer and Medium packages and UPS Saver
+  [Tags]  smoke
+  User Profile opening precondition
+  Connect MySQL for MyLogistic
+  ${DISPLAYED_PRICE}=  Get default price price for Zone 1 and  ${MSA}
+  ${MYSQL_PRICE}=  Get default discount price for  ${ZONE_1}  ${M}  ${SAVER}  ${TYPE_A}
+  Compare displayed price with MySQL price  ${DISPLAYED_PRICE}  ${MYSQL_PRICE}
+
+
+# Large Packages
+
+Verify default discount prices for A type customer and Large packages and UPS Standard
+  [Tags]  smoke
+  User Profile opening precondition
+  Connect MySQL for MyLogistic
+  ${DISPLAYED_PRICE}=  Get default price price for Zone 1 and  ${LST}
+  ${MYSQL_PRICE}=  Get default discount price for  ${ZONE_1}  ${L}  ${STANDARD}  ${TYPE_A}
+  Compare displayed price with MySQL price  ${DISPLAYED_PRICE}  ${MYSQL_PRICE}
+  
+Verify default discount prices for A type customer and Large packages and UPS Express
+  [Tags]  smoke
+  User Profile opening precondition
+  Connect MySQL for MyLogistic
+  ${DISPLAYED_PRICE}=  Get default price price for Zone 1 and  ${LEX}
+  ${MYSQL_PRICE}=  Get default discount price for  ${ZONE_1}  ${L}  ${EXPRESS}  ${TYPE_A}
+  Compare displayed price with MySQL price  ${DISPLAYED_PRICE}  ${MYSQL_PRICE}
+
+Verify default discount prices for A type customer and Large packages and UPS Saver
+  [Tags]  smoke
+  User Profile opening precondition
+  Connect MySQL for MyLogistic
+  ${DISPLAYED_PRICE}=  Get default price price for Zone 1 and  ${LSA}
+  ${MYSQL_PRICE}=  Get default discount price for  ${ZONE_1}  ${L}  ${SAVER}  ${TYPE_A}
+  Compare displayed price with MySQL price  ${DISPLAYED_PRICE}  ${MYSQL_PRICE}
+
+
+# Extra Large Packages
+
+Verify default discount prices for A type customer and Extra Large packages and UPS Standard
+  [Tags]  smoke
+  User Profile opening precondition
+  Connect MySQL for MyLogistic
+  ${DISPLAYED_PRICE}=  Get default price price for Zone 1 and  ${XST}
+  ${MYSQL_PRICE}=  Get default discount price for  ${ZONE_1}  ${XL}  ${STANDARD}  ${TYPE_A}
+  Compare displayed price with MySQL price  ${DISPLAYED_PRICE}  ${MYSQL_PRICE}
+  
+Verify default discount prices for A type customer and Extra Large packages and UPS Express
+  [Tags]  smoke
+  User Profile opening precondition
+  Connect MySQL for MyLogistic
+  ${DISPLAYED_PRICE}=  Get default price price for Zone 1 and  ${XEX}
+  ${MYSQL_PRICE}=  Get default discount price for  ${ZONE_1}  ${XL}  ${EXPRESS}  ${TYPE_A}
+  Compare displayed price with MySQL price  ${DISPLAYED_PRICE}  ${MYSQL_PRICE}
+
+Verify default discount prices for A type customer and Extra Large packages and UPS Saver
+  [Tags]  smoke
+  User Profile opening precondition
+  Connect MySQL for MyLogistic
+  ${DISPLAYED_PRICE}=  Get default price price for Zone 1 and  ${XSA}
+  ${MYSQL_PRICE}=  Get default discount price for  ${ZONE_1}  ${XL}  ${SAVER}  ${TYPE_A}
+  Compare displayed price with MySQL price  ${DISPLAYED_PRICE}  ${MYSQL_PRICE}
+
+
+# Condition Inquiry tests
+
+Condition Inquiry page can be opened successfully
+  [Tags]  smoke
+  User Profile opening precondition
+  Click Apply to special conditions button on User Profile page
+  Verify that Condition Inquiry page is opened
+
+Sending Condition Inquiry for B type customer - will be rejected
+  [Tags]  smoke
+  User Profile opening precondition
+  Click Apply to special conditions button on User Profile page
+  Verify that Condition Inquiry page is opened
+  Sleep  1
+  Set value for Standard National Packages  1-25
+  Set value for Express National Packages  1-25
+  Set value for International Packages  1-50
+  Input Condition Inquiry title  Condition Inquiry Test Title
+  Input Condition Inquiry message  Some Test Text ~!@#$%^&*()
+  Click Condition Inquiry Send button
+  Sleep  1
+  Verify that Condition Inquiry was sent successfully
+
+Admin page can be opened successfully
+  [Tags]  smoke
+  Sign In as an Admin in Admin page
+  Verify that admin pane is opened
+
+Accept condition inquiry for customer (B type)
+  [Tags]  smoke
+  Sign In as an Admin in Admin page
+  Click Condition inquirys link in admin panel
+  Click latest condition inquiry from the condition inquiry list
+  Set New Condition in current condition inquiry request  ${TYPE_B}
+  Check Read & Check checkbox in current condition inquiry
+  Click Save button in current condition request
+  Verify that condition was changed successfully in admin panel
+
+Condition Inquiry - activating "Reject" link in change condition confirmation email
+  [Tags]  smoke
+  Email change condition confirmation for unseen email  reject  /user/condition/request/rejected/
+  
+Trying to click the same "Reject" link again
+  [Tags]  smoke
+  Email change condition confirmation for already read email  reject  /user/condition/request/error/

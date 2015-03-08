@@ -1,0 +1,18 @@
+*** Settings ***
+
+Documentation  This file represents high-level keyowrds for HTTP Requests
+Resource  ../libs.txt
+
+*** Keywords ***
+
+Generic Get Request
+  [Arguments]  ${URI}  ${URN}  ${code_resp}
+  Create Session  UR_name  ${URI}  verify=True
+  ${headers}=  Create Dictionary  X-login  ${LOGIN}  X-password  ${PASSW}
+  ${resp}=  Get Request  UR_name  ${URN}  headers=${headers}
+  Should Be Equal As Strings  ${resp.status_code}  ${code_resp}
+  Log  ${resp.content}
+  Log  ${resp.headers}
+  Log  ${resp.status_code}
+  Log  ${resp.cookies}
+  [Return]  ${resp}

@@ -1,0 +1,263 @@
+==============================================================================
+20150224 13:09:45.594 - INFO - + START SUITE: Smoke 0 Landing Page And Settings [ ]
+==============================================================================
+20150224 13:09:45.596 - INFO - +- START TEST: Check that Main Page can be successfully opened [ ]
+------------------------------------------------------------------------------
+20150224 13:09:45.596 - INFO - +-- START SETUP: ui_keywords.Open Browser to myLogistic Home Page [ ${HOME_URL} | ${BROWSER} ]
+20150224 13:09:45.599 - INFO - +--- START KW: Selenium2Library.Open Browser [ ${url} | ${browser} ]
+20150224 13:09:45.599 - INFO - Opening browser 'ff' to base url 'http://mylogistic:test37@mylogistic-test.backstage.ms/'
+20150224 13:09:50.401 - DEBUG - Opened browser with session id c91c326a-a205-c146-997c-1c69ad6af55c
+20150224 13:09:50.401 - INFO - +--- END KW: Selenium2Library.Open Browser (4802)
+20150224 13:09:50.402 - INFO - +--- START KW: Selenium2Library.Set Window Size [ ${RESOLUTION_WIDTH} | ${RESOLUTION_HIGHT} ]
+20150224 13:09:50.539 - INFO - +--- END KW: Selenium2Library.Set Window Size (136)
+20150224 13:09:50.540 - INFO - +--- START KW: Selenium2Library.Maximize Browser Window [ ]
+20150224 13:09:51.070 - INFO - +--- END KW: Selenium2Library.Maximize Browser Window (529)
+20150224 13:09:51.070 - INFO - +--- START KW: Selenium2Library.Title Should Be [ Mylogistic ]
+20150224 13:09:51.084 - INFO - +---- START KW: libs.Take Screenshot [ ]
+20150224 13:09:51.087 - INFO - +----- START KW: Selenium2Library.Capture Page Screenshot [ ${TEST NAME}.png ]
+20150224 13:09:52.750 - INFO - </td></tr><tr><td colspan="3"><a href="Check%20that%20Main%20Page%20can%20be%20successfully%20opened.png"><img src="Check%20that%20Main%20Page%20can%20be%20successfully%20opened.png" width="800px"></a>
+20150224 13:09:52.751 - INFO - +----- END KW: Selenium2Library.Capture Page Screenshot (1665)
+20150224 13:09:52.751 - INFO - +---- END KW: libs.Take Screenshot (1668)
+20150224 13:09:52.752 - FAIL - Title should have been 'Mylogistic' but was 'Shipstage'
+20150224 13:09:52.752 - DEBUG - Traceback (most recent call last):
+  File "<string>", line 2, in title_should_be
+  File "/Library/Python/2.7/site-packages/robotframework_selenium2library-1.5.0-py2.7.egg/Selenium2Library/keywords/keywordgroup.py", line 12, in _run_on_failure_decorator
+    return method(*args, **kwargs)
+  File "/Library/Python/2.7/site-packages/robotframework_selenium2library-1.5.0-py2.7.egg/Selenium2Library/keywords/_browsermanagement.py", line 355, in title_should_be
+    % (title, actual))
+20150224 13:09:52.752 - INFO - +--- END KW: Selenium2Library.Title Should Be (1682)
+20150224 13:09:52.752 - INFO - +-- END SETUP: ui_keywords.Open Browser to myLogistic Home Page (7156)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+20150224 13:09:52.753 - INFO - +-- START TEARDOWN: Selenium2Library.Close All Browsers [ ]
+20150224 13:09:52.754 - DEBUG - Closing all browsers
+20150224 13:09:52.813 - INFO - +-- END TEARDOWN: Selenium2Library.Close All Browsers (60)
+------------------------------------------------------------------------------
+20150224 13:09:52.813 - INFO - +- END TEST: Check that Main Page can be successfully opened (7219)
+------------------------------------------------------------------------------
+20150224 13:09:52.816 - INFO - +- START TEST: Contact Us Form Verification - Input Fields and Clear All Button [ ]
+------------------------------------------------------------------------------
+20150224 13:09:52.817 - INFO - +-- START SETUP: ui_keywords.Open Browser to myLogistic Home Page [ ${HOME_URL} | ${BROWSER} ]
+20150224 13:09:52.821 - INFO - +--- START KW: Selenium2Library.Open Browser [ ${url} | ${browser} ]
+20150224 13:09:52.821 - INFO - Opening browser 'ff' to base url 'http://mylogistic:test37@mylogistic-test.backstage.ms/'
+20150224 13:09:57.097 - DEBUG - Opened browser with session id 9012cf6c-6421-384c-8f05-f7cc0d16a2c2
+20150224 13:09:57.098 - INFO - +--- END KW: Selenium2Library.Open Browser (4277)
+20150224 13:09:57.100 - INFO - +--- START KW: Selenium2Library.Set Window Size [ ${RESOLUTION_WIDTH} | ${RESOLUTION_HIGHT} ]
+20150224 13:09:57.208 - INFO - +--- END KW: Selenium2Library.Set Window Size (109)
+20150224 13:09:57.209 - INFO - +--- START KW: Selenium2Library.Maximize Browser Window [ ]
+20150224 13:09:57.698 - INFO - +--- END KW: Selenium2Library.Maximize Browser Window (489)
+20150224 13:09:57.698 - INFO - +--- START KW: Selenium2Library.Title Should Be [ Mylogistic ]
+20150224 13:09:57.704 - INFO - +---- START KW: libs.Take Screenshot [ ]
+20150224 13:09:57.707 - INFO - +----- START KW: Selenium2Library.Capture Page Screenshot [ ${TEST NAME}.png ]
+20150224 13:09:59.361 - INFO - </td></tr><tr><td colspan="3"><a href="Contact%20Us%20Form%20Verification%20-%20Input%20Fields%20and%20Clear%20All%20Button.png"><img src="Contact%20Us%20Form%20Verification%20-%20Input%20Fields%20and%20Clear%20All%20Button.png" width="800px"></a>
+20150224 13:09:59.362 - INFO - +----- END KW: Selenium2Library.Capture Page Screenshot (1654)
+20150224 13:09:59.362 - INFO - +---- END KW: libs.Take Screenshot (1658)
+20150224 13:09:59.362 - FAIL - Title should have been 'Mylogistic' but was 'Shipstage'
+20150224 13:09:59.362 - DEBUG - Traceback (most recent call last):
+  File "<string>", line 2, in title_should_be
+  File "/Library/Python/2.7/site-packages/robotframework_selenium2library-1.5.0-py2.7.egg/Selenium2Library/keywords/keywordgroup.py", line 12, in _run_on_failure_decorator
+    return method(*args, **kwargs)
+  File "/Library/Python/2.7/site-packages/robotframework_selenium2library-1.5.0-py2.7.egg/Selenium2Library/keywords/_browsermanagement.py", line 355, in title_should_be
+    % (title, actual))
+20150224 13:09:59.362 - INFO - +--- END KW: Selenium2Library.Title Should Be (1664)
+20150224 13:09:59.363 - INFO - +-- END SETUP: ui_keywords.Open Browser to myLogistic Home Page (6545)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+20150224 13:09:59.363 - INFO - +-- START TEARDOWN: Selenium2Library.Close All Browsers [ ]
+20150224 13:09:59.364 - DEBUG - Closing all browsers
+20150224 13:09:59.424 - INFO - +-- END TEARDOWN: Selenium2Library.Close All Browsers (61)
+------------------------------------------------------------------------------
+20150224 13:09:59.425 - INFO - +- END TEST: Contact Us Form Verification - Input Fields and Clear All Button (6610)
+------------------------------------------------------------------------------
+20150224 13:09:59.428 - INFO - +- START TEST: Contact Us Form basic Verification [ ]
+------------------------------------------------------------------------------
+20150224 13:09:59.428 - INFO - +-- START SETUP: ui_keywords.Open Browser to myLogistic Home Page [ ${HOME_URL} | ${BROWSER} ]
+20150224 13:09:59.431 - INFO - +--- START KW: Selenium2Library.Open Browser [ ${url} | ${browser} ]
+20150224 13:09:59.431 - INFO - Opening browser 'ff' to base url 'http://mylogistic:test37@mylogistic-test.backstage.ms/'
+20150224 13:10:04.610 - DEBUG - Opened browser with session id c32a3906-659e-654d-b94b-67e1e41b3843
+20150224 13:10:04.611 - INFO - +--- END KW: Selenium2Library.Open Browser (5180)
+20150224 13:10:04.612 - INFO - +--- START KW: Selenium2Library.Set Window Size [ ${RESOLUTION_WIDTH} | ${RESOLUTION_HIGHT} ]
+20150224 13:10:04.719 - INFO - +--- END KW: Selenium2Library.Set Window Size (106)
+20150224 13:10:04.719 - INFO - +--- START KW: Selenium2Library.Maximize Browser Window [ ]
+20150224 13:10:05.206 - INFO - +--- END KW: Selenium2Library.Maximize Browser Window (487)
+20150224 13:10:05.206 - INFO - +--- START KW: Selenium2Library.Title Should Be [ Mylogistic ]
+20150224 13:10:05.216 - INFO - +---- START KW: libs.Take Screenshot [ ]
+20150224 13:10:05.219 - INFO - +----- START KW: Selenium2Library.Capture Page Screenshot [ ${TEST NAME}.png ]
+20150224 13:10:06.838 - INFO - </td></tr><tr><td colspan="3"><a href="Contact%20Us%20Form%20basic%20Verification.png"><img src="Contact%20Us%20Form%20basic%20Verification.png" width="800px"></a>
+20150224 13:10:06.839 - INFO - +----- END KW: Selenium2Library.Capture Page Screenshot (1620)
+20150224 13:10:06.839 - INFO - +---- END KW: libs.Take Screenshot (1623)
+20150224 13:10:06.839 - FAIL - Title should have been 'Mylogistic' but was 'Shipstage'
+20150224 13:10:06.839 - DEBUG - Traceback (most recent call last):
+  File "<string>", line 2, in title_should_be
+  File "/Library/Python/2.7/site-packages/robotframework_selenium2library-1.5.0-py2.7.egg/Selenium2Library/keywords/keywordgroup.py", line 12, in _run_on_failure_decorator
+    return method(*args, **kwargs)
+  File "/Library/Python/2.7/site-packages/robotframework_selenium2library-1.5.0-py2.7.egg/Selenium2Library/keywords/_browsermanagement.py", line 355, in title_should_be
+    % (title, actual))
+20150224 13:10:06.840 - INFO - +--- END KW: Selenium2Library.Title Should Be (1633)
+20150224 13:10:06.840 - INFO - +-- END SETUP: ui_keywords.Open Browser to myLogistic Home Page (7412)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+20150224 13:10:06.841 - INFO - +-- START TEARDOWN: Selenium2Library.Close All Browsers [ ]
+20150224 13:10:06.841 - DEBUG - Closing all browsers
+20150224 13:10:06.893 - INFO - +-- END TEARDOWN: Selenium2Library.Close All Browsers (53)
+------------------------------------------------------------------------------
+20150224 13:10:06.894 - INFO - +- END TEST: Contact Us Form basic Verification (7468)
+------------------------------------------------------------------------------
+20150224 13:10:06.898 - INFO - +- START TEST: New User Registration verification [ ]
+------------------------------------------------------------------------------
+20150224 13:10:06.898 - INFO - +-- START SETUP: ui_keywords.Open Browser to myLogistic Home Page [ ${HOME_URL} | ${BROWSER} ]
+20150224 13:10:06.901 - INFO - +--- START KW: Selenium2Library.Open Browser [ ${url} | ${browser} ]
+20150224 13:10:06.901 - INFO - Opening browser 'ff' to base url 'http://mylogistic:test37@mylogistic-test.backstage.ms/'
+20150224 13:10:11.908 - DEBUG - Opened browser with session id 92944796-9e7b-b84a-a64f-051adf4ba652
+20150224 13:10:11.908 - INFO - +--- END KW: Selenium2Library.Open Browser (5007)
+20150224 13:10:11.909 - INFO - +--- START KW: Selenium2Library.Set Window Size [ ${RESOLUTION_WIDTH} | ${RESOLUTION_HIGHT} ]
+20150224 13:10:12.007 - INFO - +--- END KW: Selenium2Library.Set Window Size (98)
+20150224 13:10:12.008 - INFO - +--- START KW: Selenium2Library.Maximize Browser Window [ ]
+20150224 13:10:12.657 - INFO - +--- END KW: Selenium2Library.Maximize Browser Window (649)
+20150224 13:10:12.658 - INFO - +--- START KW: Selenium2Library.Title Should Be [ Mylogistic ]
+20150224 13:10:12.666 - INFO - +---- START KW: libs.Take Screenshot [ ]
+20150224 13:10:12.669 - INFO - +----- START KW: Selenium2Library.Capture Page Screenshot [ ${TEST NAME}.png ]
+20150224 13:10:14.336 - INFO - </td></tr><tr><td colspan="3"><a href="New%20User%20Registration%20verification.png"><img src="New%20User%20Registration%20verification.png" width="800px"></a>
+20150224 13:10:14.336 - INFO - +----- END KW: Selenium2Library.Capture Page Screenshot (1667)
+20150224 13:10:14.336 - INFO - +---- END KW: libs.Take Screenshot (1670)
+20150224 13:10:14.337 - FAIL - Title should have been 'Mylogistic' but was 'Shipstage'
+20150224 13:10:14.337 - DEBUG - Traceback (most recent call last):
+  File "<string>", line 2, in title_should_be
+  File "/Library/Python/2.7/site-packages/robotframework_selenium2library-1.5.0-py2.7.egg/Selenium2Library/keywords/keywordgroup.py", line 12, in _run_on_failure_decorator
+    return method(*args, **kwargs)
+  File "/Library/Python/2.7/site-packages/robotframework_selenium2library-1.5.0-py2.7.egg/Selenium2Library/keywords/_browsermanagement.py", line 355, in title_should_be
+    % (title, actual))
+20150224 13:10:14.337 - INFO - +--- END KW: Selenium2Library.Title Should Be (1679)
+20150224 13:10:14.338 - INFO - +-- END SETUP: ui_keywords.Open Browser to myLogistic Home Page (7439)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+20150224 13:10:14.338 - INFO - +-- START TEARDOWN: Selenium2Library.Close All Browsers [ ]
+20150224 13:10:14.338 - DEBUG - Closing all browsers
+20150224 13:10:14.405 - INFO - +-- END TEARDOWN: Selenium2Library.Close All Browsers (67)
+------------------------------------------------------------------------------
+20150224 13:10:14.406 - INFO - +- END TEST: New User Registration verification (7511)
+------------------------------------------------------------------------------
+20150224 13:10:14.411 - INFO - +- START TEST: Email registration confirmation [ ]
+------------------------------------------------------------------------------
+20150224 13:10:14.412 - INFO - +-- START SETUP: ui_keywords.Open Browser to myLogistic Home Page [ ${HOME_URL} | ${BROWSER} ]
+20150224 13:10:14.417 - INFO - +--- START KW: Selenium2Library.Open Browser [ ${url} | ${browser} ]
+20150224 13:10:14.417 - INFO - Opening browser 'ff' to base url 'http://mylogistic:test37@mylogistic-test.backstage.ms/'
+20150224 13:10:19.146 - DEBUG - Opened browser with session id cf80603e-5cdb-6144-9872-e027626653a7
+20150224 13:10:19.147 - INFO - +--- END KW: Selenium2Library.Open Browser (4731)
+20150224 13:10:19.147 - INFO - +--- START KW: Selenium2Library.Set Window Size [ ${RESOLUTION_WIDTH} | ${RESOLUTION_HIGHT} ]
+20150224 13:10:19.285 - INFO - +--- END KW: Selenium2Library.Set Window Size (138)
+20150224 13:10:19.287 - INFO - +--- START KW: Selenium2Library.Maximize Browser Window [ ]
+20150224 13:10:19.823 - INFO - +--- END KW: Selenium2Library.Maximize Browser Window (537)
+20150224 13:10:19.824 - INFO - +--- START KW: Selenium2Library.Title Should Be [ Mylogistic ]
+20150224 13:10:19.836 - INFO - +---- START KW: libs.Take Screenshot [ ]
+20150224 13:10:19.839 - INFO - +----- START KW: Selenium2Library.Capture Page Screenshot [ ${TEST NAME}.png ]
+20150224 13:10:21.466 - INFO - </td></tr><tr><td colspan="3"><a href="Email%20registration%20confirmation.png"><img src="Email%20registration%20confirmation.png" width="800px"></a>
+20150224 13:10:21.467 - INFO - +----- END KW: Selenium2Library.Capture Page Screenshot (1627)
+20150224 13:10:21.467 - INFO - +---- END KW: libs.Take Screenshot (1631)
+20150224 13:10:21.467 - FAIL - Title should have been 'Mylogistic' but was 'Shipstage'
+20150224 13:10:21.467 - DEBUG - Traceback (most recent call last):
+  File "<string>", line 2, in title_should_be
+  File "/Library/Python/2.7/site-packages/robotframework_selenium2library-1.5.0-py2.7.egg/Selenium2Library/keywords/keywordgroup.py", line 12, in _run_on_failure_decorator
+    return method(*args, **kwargs)
+  File "/Library/Python/2.7/site-packages/robotframework_selenium2library-1.5.0-py2.7.egg/Selenium2Library/keywords/_browsermanagement.py", line 355, in title_should_be
+    % (title, actual))
+20150224 13:10:21.467 - INFO - +--- END KW: Selenium2Library.Title Should Be (1643)
+20150224 13:10:21.468 - INFO - +-- END SETUP: ui_keywords.Open Browser to myLogistic Home Page (7055)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+20150224 13:10:21.468 - INFO - +-- START TEARDOWN: Selenium2Library.Close All Browsers [ ]
+20150224 13:10:21.468 - DEBUG - Closing all browsers
+20150224 13:10:21.531 - INFO - +-- END TEARDOWN: Selenium2Library.Close All Browsers (63)
+------------------------------------------------------------------------------
+20150224 13:10:21.531 - INFO - +- END TEST: Email registration confirmation (7125)
+------------------------------------------------------------------------------
+20150224 13:10:21.536 - INFO - +- START TEST: Sign In just created user [ ]
+------------------------------------------------------------------------------
+20150224 13:10:21.536 - INFO - +-- START SETUP: ui_keywords.Open Browser to myLogistic Home Page [ ${HOME_URL} | ${BROWSER} ]
+20150224 13:10:21.540 - INFO - +--- START KW: Selenium2Library.Open Browser [ ${url} | ${browser} ]
+20150224 13:10:21.540 - INFO - Opening browser 'ff' to base url 'http://mylogistic:test37@mylogistic-test.backstage.ms/'
+20150224 13:10:26.463 - DEBUG - Opened browser with session id 871bf0f5-3eff-844a-b9e9-6e12ebd32063
+20150224 13:10:26.464 - INFO - +--- END KW: Selenium2Library.Open Browser (4924)
+20150224 13:10:26.464 - INFO - +--- START KW: Selenium2Library.Set Window Size [ ${RESOLUTION_WIDTH} | ${RESOLUTION_HIGHT} ]
+20150224 13:10:26.579 - INFO - +--- END KW: Selenium2Library.Set Window Size (115)
+20150224 13:10:26.580 - INFO - +--- START KW: Selenium2Library.Maximize Browser Window [ ]
+20150224 13:10:27.073 - INFO - +--- END KW: Selenium2Library.Maximize Browser Window (493)
+20150224 13:10:27.074 - INFO - +--- START KW: Selenium2Library.Title Should Be [ Mylogistic ]
+20150224 13:10:27.081 - INFO - +---- START KW: libs.Take Screenshot [ ]
+20150224 13:10:27.085 - INFO - +----- START KW: Selenium2Library.Capture Page Screenshot [ ${TEST NAME}.png ]
+20150224 13:10:28.767 - INFO - </td></tr><tr><td colspan="3"><a href="Sign%20In%20just%20created%20user.png"><img src="Sign%20In%20just%20created%20user.png" width="800px"></a>
+20150224 13:10:28.767 - INFO - +----- END KW: Selenium2Library.Capture Page Screenshot (1682)
+20150224 13:10:28.768 - INFO - +---- END KW: libs.Take Screenshot (1687)
+20150224 13:10:28.768 - FAIL - Title should have been 'Mylogistic' but was 'Shipstage'
+20150224 13:10:28.768 - DEBUG - Traceback (most recent call last):
+  File "<string>", line 2, in title_should_be
+  File "/Library/Python/2.7/site-packages/robotframework_selenium2library-1.5.0-py2.7.egg/Selenium2Library/keywords/keywordgroup.py", line 12, in _run_on_failure_decorator
+    return method(*args, **kwargs)
+  File "/Library/Python/2.7/site-packages/robotframework_selenium2library-1.5.0-py2.7.egg/Selenium2Library/keywords/_browsermanagement.py", line 355, in title_should_be
+    % (title, actual))
+20150224 13:10:28.768 - INFO - +--- END KW: Selenium2Library.Title Should Be (1694)
+20150224 13:10:28.769 - INFO - +-- END SETUP: ui_keywords.Open Browser to myLogistic Home Page (7233)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+20150224 13:10:28.769 - INFO - +-- START TEARDOWN: Selenium2Library.Close All Browsers [ ]
+20150224 13:10:28.770 - DEBUG - Closing all browsers
+20150224 13:10:28.836 - INFO - +-- END TEARDOWN: Selenium2Library.Close All Browsers (67)
+------------------------------------------------------------------------------
+20150224 13:10:28.837 - INFO - +- END TEST: Sign In just created user (7305)
+------------------------------------------------------------------------------
+20150224 13:10:28.843 - INFO - +- START TEST: Set Shipments Settings [ ]
+------------------------------------------------------------------------------
+20150224 13:10:28.844 - INFO - +-- START SETUP: ui_keywords.Open Browser to myLogistic Home Page [ ${HOME_URL} | ${BROWSER} ]
+20150224 13:10:28.849 - INFO - +--- START KW: Selenium2Library.Open Browser [ ${url} | ${browser} ]
+20150224 13:10:28.850 - INFO - Opening browser 'ff' to base url 'http://mylogistic:test37@mylogistic-test.backstage.ms/'
+20150224 13:10:33.440 - DEBUG - Opened browser with session id fc3eb188-bbe8-de40-a04a-d0ae318a146a
+20150224 13:10:33.441 - INFO - +--- END KW: Selenium2Library.Open Browser (4592)
+20150224 13:10:33.442 - INFO - +--- START KW: Selenium2Library.Set Window Size [ ${RESOLUTION_WIDTH} | ${RESOLUTION_HIGHT} ]
+20150224 13:10:33.557 - INFO - +--- END KW: Selenium2Library.Set Window Size (114)
+20150224 13:10:33.558 - INFO - +--- START KW: Selenium2Library.Maximize Browser Window [ ]
+20150224 13:10:34.048 - INFO - +--- END KW: Selenium2Library.Maximize Browser Window (491)
+20150224 13:10:34.049 - INFO - +--- START KW: Selenium2Library.Title Should Be [ Mylogistic ]
+20150224 13:10:34.056 - INFO - +---- START KW: libs.Take Screenshot [ ]
+20150224 13:10:34.059 - INFO - +----- START KW: Selenium2Library.Capture Page Screenshot [ ${TEST NAME}.png ]
+20150224 13:10:35.733 - INFO - </td></tr><tr><td colspan="3"><a href="Set%20Shipments%20Settings.png"><img src="Set%20Shipments%20Settings.png" width="800px"></a>
+20150224 13:10:35.734 - INFO - +----- END KW: Selenium2Library.Capture Page Screenshot (1675)
+20150224 13:10:35.734 - INFO - +---- END KW: libs.Take Screenshot (1678)
+20150224 13:10:35.734 - FAIL - Title should have been 'Mylogistic' but was 'Shipstage'
+20150224 13:10:35.735 - DEBUG - Traceback (most recent call last):
+  File "<string>", line 2, in title_should_be
+  File "/Library/Python/2.7/site-packages/robotframework_selenium2library-1.5.0-py2.7.egg/Selenium2Library/keywords/keywordgroup.py", line 12, in _run_on_failure_decorator
+    return method(*args, **kwargs)
+  File "/Library/Python/2.7/site-packages/robotframework_selenium2library-1.5.0-py2.7.egg/Selenium2Library/keywords/_browsermanagement.py", line 355, in title_should_be
+    % (title, actual))
+20150224 13:10:35.735 - INFO - +--- END KW: Selenium2Library.Title Should Be (1686)
+20150224 13:10:35.735 - INFO - +-- END SETUP: ui_keywords.Open Browser to myLogistic Home Page (6891)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+20150224 13:10:35.736 - INFO - +-- START TEARDOWN: Selenium2Library.Close All Browsers [ ]
+20150224 13:10:35.736 - DEBUG - Closing all browsers
+20150224 13:10:35.788 - INFO - +-- END TEARDOWN: Selenium2Library.Close All Browsers (51)
+------------------------------------------------------------------------------
+20150224 13:10:35.788 - INFO - +- END TEST: Set Shipments Settings (6950)
+------------------------------------------------------------------------------
+20150224 13:10:35.791 - INFO - +- START TEST: Verify registration information in Profile Update Page [ ]
+------------------------------------------------------------------------------
+20150224 13:10:35.792 - INFO - +-- START SETUP: ui_keywords.Open Browser to myLogistic Home Page [ ${HOME_URL} | ${BROWSER} ]
+20150224 13:10:35.795 - INFO - +--- START KW: Selenium2Library.Open Browser [ ${url} | ${browser} ]
+20150224 13:10:35.795 - INFO - Opening browser 'ff' to base url 'http://mylogistic:test37@mylogistic-test.backstage.ms/'
+20150224 13:10:37.773 - INFO - +---- START KW: libs.Take Screenshot [ ]
+20150224 13:10:37.776 - INFO - +----- START KW: Selenium2Library.Capture Page Screenshot [ ${TEST NAME}.png ]
+20150224 13:10:37.776 - INFO - +----- END KW: Selenium2Library.Capture Page Screenshot (0)
+20150224 13:10:37.776 - INFO - +---- END KW: libs.Take Screenshot (4)
+20150224 13:10:37.777 - WARN - Keyword 'Take Screenshot' could not be run on failure: Execution terminated by signal
+20150224 13:10:37.777 - INFO - +--- END KW: Selenium2Library.Open Browser (1983)
+20150224 13:10:37.777 - INFO - +-- END SETUP: ui_keywords.Open Browser to myLogistic Home Page (1985)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+20150224 13:10:37.778 - INFO - +-- START TEARDOWN: Selenium2Library.Close All Browsers [ ]
+20150224 13:10:37.778 - DEBUG - Closing all browsers
+20150224 13:10:37.778 - INFO - +-- END TEARDOWN: Selenium2Library.Close All Browsers (0)
+------------------------------------------------------------------------------
+20150224 13:10:37.779 - INFO - +- END TEST: Verify registration information in Profile Update Page (1989)
+------------------------------------------------------------------------------
+20150224 13:10:37.783 - INFO - +- START TEST: Update information in Profile Update Page [ ]
+------------------------------------------------------------------------------
+20150224 13:10:37.783 - INFO - +- END TEST: Update information in Profile Update Page (4)
+------------------------------------------------------------------------------
+20150224 13:10:37.787 - INFO - +- START TEST: Verify that profile is updated correctly with new information [ ]
+------------------------------------------------------------------------------
+20150224 13:10:37.787 - INFO - +- END TEST: Verify that profile is updated correctly with new information (3)
+------------------------------------------------------------------------------
+20150224 13:10:37.791 - INFO - + END SUITE: Smoke 0 Landing Page And Settings (52583)
+==============================================================================

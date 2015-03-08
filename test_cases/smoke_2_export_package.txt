@@ -1,0 +1,148 @@
+*** Settings ***
+
+Documentation  Test suite for Main page
+Resource  ../config.txt
+
+Test Setup  Open Browser to Mylogistic Home Page  ${HOME_URL}  ${BROWSER}
+Test Teardown  Close All Browsers
+
+*** Test Cases ***
+
+Creating Export Package #2 verification
+  [Tags]  smoke
+  Sign In as an autotest user
+  Click Create New Package button
+  Verify that Create Package page is opened
+  Select to_country  Scotland
+  Input package to_company  To Company Name
+  Input package to_contact  To Contact Name
+  Input package to_phone  123456789
+  Input package to_email  to@email.com
+  Input package to_address  North Lanarkshire
+  Input package to_city  North Lanarkshire
+  Input package to_postal  ML5 4TF
+  Click UPS Shipment Type drop-down
+  Select UPS Express Shipment Type
+  Input package length  80
+  Input package height  80
+  Input package width  10
+  Input package weight  8
+  Input package free_reference  Export Free Reference
+  Check Height Insurance checkbox
+  Input Height Insurance value  1000
+  Click Create button
+  Verify that Package Info is opened
+
+Verify Export Package #2 price
+  [Tags]  smoke
+  Sign In as an autotest user
+  Open Package #1 Details
+  Check that Package contains correct price  149.41
+
+Verify Export Package #2 name
+  [Tags]  smoke
+  Sign In as an autotest user
+  Open Package #1 Details
+  Check that Package name is correct  North Lanarkshire ML5 4TF
+
+Verify Export Package #2 weight
+  [Tags]  smoke
+  Sign In as an autotest user
+  Open Package #1 Details
+  Check that Package weight is correct  8.0
+
+Add Export Package #2 to cart, create pickup, payment verification - Sofort
+  [Tags]  smoke
+  Sign In as an autotest user
+  Open Package #1 Details
+  Click Add to Cart button
+  Click Cart button
+  Click Checkout button
+  Verify that Pickup Create page is opened
+  Click Pickup Create button in Pickup page
+  Click Payment Method drop-down
+  Select Sofortuberweisung Payment method
+  Verify that actual payment price is  179.65
+
+Verification Payment by Sofort for Export Package #2
+  [Tags]  smoke
+  Sign In as an autotest user
+  Open Package #1 Details
+  Click Order button in Package Details page
+  Click Payment button in Order Page
+  Click Payment Method drop-down
+  Select Sofortuberweisung Payment method
+  Click Payment by Sofort button
+  Select Sofort Country  DE
+  Input Bank Code in Sofort  00000
+  Click Sofort Submit button
+  Input Sofort Username  99717
+  Input Sofort Pass  jordan#23
+  Click Sofort Submit button
+  Click Sofort Account Number
+  Click Sofort Submit button
+  Input Sofort Captcha  123
+  Click Sofort Submit button
+  Verify that Transaction is completed successfully  Transaction complete
+
+Paid Order #2 verification
+  [Tags]  smoke
+  Sign In as an autotest user
+  Open Package #1 Details
+  Click Order button in Package Details page
+  Verify that Order #1 is already paid. And amount is  179.65
+
+Verification "Pickup create" state for Export Package #2
+  [Tags]  smoke
+  Sign In as an autotest user
+  Open Package #1 Details  
+  Verify that Package Current State is  Pickup create  
+
+Get Export Package #2 ID
+  [Tags]  smoke
+  Sign In as an autotest user
+  Open Package #1 Details
+  ${P_NUMBER_CURRENT}=  Get Package #1 number
+  Connect MySQL for MyLogistic
+  ${P2_ID}=  Get id for current package  ${P_NUMBER_CURRENT}
+  Set Global Variable  ${P2_ID}  ${P2_ID}
+
+Set Export Package #2 to "In Transit" state
+  [Tags]  smoke
+  Connect MySQL for MyLogistic
+  Set "In Transit" state for package  ${P2_ID}
+  Connect SSH to MyLogistic 
+  Force Update Server state via SSH
+
+Verification "In Transit" state for Export Package #2
+  [Tags]  smoke
+  Sign In as an autotest user
+  Open Package #1 Details  
+  Verify that Package Current State is  In Transit 
+
+
+Set National Package #2 to "Pickup" state
+  [Tags]  smoke
+  Connect MySQL for MyLogistic
+  Set "2nd Delivery attempt" state for package  ${P2_ID}
+  Connect SSH to MyLogistic 
+  Force Update Server state via SSH
+
+Verification "Pickup" state for National Package #2
+  [Tags]  smoke
+  Sign In as an autotest user
+  Open Package #1 Details  
+  Verify that Package Current State is  Pickup
+
+Set Export Package #2 to "Delivered" state
+  [Tags]  smoke
+  Connect MySQL for MyLogistic
+  Set "Delivered" state for package  ${P2_ID}
+  Connect SSH to MyLogistic 
+  Force Update Server state via SSH
+
+Verification "Delivered" state for Export Package #2
+  [Tags]  smoke
+  Sign In as an autotest user
+  Open Package #1 Details  
+  Verify that Package Current State is  Delivered 
