@@ -8,7 +8,7 @@ Resource  ../libs.txt
 Generic Get Request
   [Arguments]  ${URN}  ${code_resp}
   Create Session  UR_name  ${HOME_URI}  verify=True
-  ${headers}=  Create Dictionary  X-login  ${LOGIN}  X-password  ${PASSW}
+  ${headers}=  Create Dictionary  Cookie  ${session_id}  X-login  ${LOGIN}  X-token  ${x-token}
   ${resp}=  Get Request  UR_name  ${URN}  headers=${headers}
   Should Be Equal As Strings  ${resp.status_code}  ${code_resp}
   Log  ${resp.request.headers}

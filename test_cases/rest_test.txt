@@ -15,6 +15,12 @@ Session authentication initialization
   Log  ${session_id}
   Log  ${x-token}
 
+Get Request with authentication
+  [Tags]  master
+  ${resp}=  Generic Get Request  ${DEFAULT_URN}  200
+
+  
+
 Initial request - Get Session_ID
   [Tags]  test
   Create Session  Leo  https://portal-leo.icontrol.com  verify=True
