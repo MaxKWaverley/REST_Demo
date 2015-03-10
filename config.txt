@@ -9,28 +9,8 @@ Resource  data.txt
 
 *** Variables ***
 
-${HTTP_AUTH}  mylogistic:test37
-# ${ENV_IP}  198.199.127.25
-${ENV_IP}  https://portal-leo.icontrol.com/rest/icontrol/nw/150225yg855586/instances/17
-# prod ${ENV_IP}  shipstage.com
-${HOME_URL}  https://portal-leo.icontrol.com/rest/icontrol/nw/150225yg855586/instances/17
-${BROWSER}  ff
-
-# ${MYSQL_IP}  ${ENV_IP}
-${MYSQL_IP}  127.0.0.1
-${MYSQL_PORT}  3306
-
-${TEST_EMAIL}  msm60561@gmail.com
-${TEST_EMAIL_PASS}  test13489
-${ADMIN_EMAIL}  ms@ms.ms
-${ADMIN_PASS}  ms
-
-${RESOLUTION_WIDTH}  1360
-${RESOLUTION_HIGHT}  768
-
-#  ${SSH_KEY_PATH}  ../scripts/rsa_key
-${SSH_KEY_PATH}  %{HOME}/.ssh/rsa_key
-${SSH_KEY_PWD}  Ge6234234meica
+${HOME_URI}  https://portal-leo.icontrol.com
+${DEFAULT_URN}  /rest/icontrol/nw/150225yg855586
 
 ${LOGIN}  dmitriy
 ${PASSW}  passwordIC

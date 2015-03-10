@@ -8,6 +8,13 @@ Resource  ../config.txt
 
 *** Test Cases ***
 
+Session authentication initialization
+  [Tags]  master
+  Get Session_ID  ${DEFAULT_URN}
+  Get X-Token  ${DEFAULT_URN}
+  Log  ${session_id}
+  Log  ${x-token}
+
 Initial request - Get Session_ID
   [Tags]  test
   Create Session  Leo  https://portal-leo.icontrol.com  verify=True
@@ -44,6 +51,24 @@ Get Requests with Session_ID and X-token
   Log  ${resp.cookies}
  
 HTTP Test
-  [Tags]  test23
-  ${test_resp}=  Generic Get Request  https://portal-leo.icontrol.com  /rest/icontrol/nw/150225yg855586  200
+  [Tags]  opt
+  ${test_resp}=  Generic Get Request  /rest/icontrol/nw/150225yg855586  200
   Log  ${test_resp}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
