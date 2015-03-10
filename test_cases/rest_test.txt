@@ -15,13 +15,12 @@ Initial request - Get Session_ID
   Log  ${resp.headers}
   Log  ${resp.cookies}
   ${session_id}=  Get Variable Value  ${resp.headers['set-cookie'][:47]}
-  Convert To String  ${session_id}
   Set Global Variable  ${session_id}  ${session_id}
     
-Get Requests
+Initial request - Get X-Token
   [Tags]  test
   Create Session  Leo  https://portal-leo.icontrol.com  verify=True
-  ${headers}=  Create Dictionary  Cookie  ${session_id}  X-login  dmitriy  X-password  passwordIC
+  ${headers}=  Create Dictionary  Cookie  ${session_id}  X-login  dmitriy  X-password  passwordIC  X-expires  300000
   ${resp}=  Get Request  Leo  /rest/icontrol/nw/150216yg624546  headers=${headers}
   Should Be Equal As Strings  ${resp.status_code}  200
 #  Log  ${resp.content}
@@ -29,11 +28,13 @@ Get Requests
   Log  ${resp.headers}
   Log  ${resp.status_code}
   Log  ${resp.cookies}
+  ${x-token}=  Get Variable Value  ${resp.headers['x-token']}
+  Set Global Variable  ${x-token}  ${x-token}
   
-Get Requests Again
+Get Requests with Session_ID and X-token
   [Tags]  test
   Create Session  Leo  https://portal-leo.icontrol.com  verify=True
-  ${headers}=  Create Dictionary  X-login  dmitriy  X-password  passwordIC  Cookie  ${session_id}
+  ${headers}=  Create Dictionary  X-login  dmitriy  X-token  ${x-token}  Cookie  ${session_id}
   ${resp}=  Get Request  Leo  /rest/icontrol/nw/150216yg624546  headers=${headers}
   Should Be Equal As Strings  ${resp.status_code}  200
 #  Log  ${resp.content}
