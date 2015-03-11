@@ -1,37 +1,37 @@
 *** Settings ***
-
-Documentation  This file represents high-level keyowrds for HTTP Requests
-Resource  ../libs.txt
+Documentation     This file represents high-level keyowrds for HTTP Requests
+Resource          ../libs.txt
 
 *** Keywords ***
-
 Generic Get Request
-  [Arguments]  ${URN}  ${code_resp}
-  Create Session  UR_name  ${HOME_URI}  verify=True
-  ${headers}=  Create Dictionary  Cookie  ${session_id}  X-login  ${LOGIN}  X-token  ${x-token}
-  ${resp}=  Get Request  UR_name  ${URN}  headers=${headers}
-  Should Be Equal As Strings  ${resp.status_code}  ${code_resp}
-  Log  ${resp.request.headers}
-  Log  ${resp.headers}
-  Log  ${resp.content}
-  Log  ${resp.status_code}
-  Log  ${resp.cookies}
-  [Return]  ${resp}
+    [Arguments]    ${URN}    ${code_resp}
+    Create Session    UR_name    ${HOME_URI}    verify=True
+    ${headers}=    Create Dictionary    Cookie    ${session_id}    X-login    ${LOGIN}    X-token
+    ...    ${x-token}
+    ${resp}=    Get Request    UR_name    ${URN}    headers=${headers}
+    Should Be Equal As Strings    ${resp.status_code}    ${code_resp}
+    Log    ${resp.request.headers}
+    Log    ${resp.headers}
+    Log    ${resp.content}
+    Log    ${resp.status_code}
+    Log    ${resp.cookies}
+    [Return]    ${resp}
 
 Get Session_ID
-  [Arguments]  ${URN}
-  Create Session  UR_name  ${HOME_URI}  verify=True
-  ${resp}=  Get Request  UR_name  ${URN}
-  Log  ${resp.headers}
-  ${session_id}=  Get Variable Value  ${resp.headers['set-cookie'][:47]}
-  Set Global Variable  ${session_id}  ${session_id}
+    [Arguments]    ${URN}
+    Create Session    UR_name    ${HOME_URI}    verify=True
+    ${resp}=    Get Request    UR_name    ${URN}
+    Log    ${resp.headers}
+    ${session_id}=    Get Variable Value    ${resp.headers['set-cookie'][:47]}
+    Set Global Variable    ${session_id}    ${session_id}
 
 Get X-Token
-  [Arguments]  ${URN}
-  Create Session  UR_name  ${HOME_URI}  verify=True
-  ${headers}=  Create Dictionary  Cookie  ${session_id}  X-login  ${LOGIN}  X-password  ${PASSW}  X-expires  300000
-  ${resp}=  Get Request  UR_name  /rest/icontrol/nw/150216yg624546  headers=${headers}
-  Should Be Equal As Strings  ${resp.status_code}  200
-  Log  ${resp.headers}
-  ${x-token}=  Get Variable Value  ${resp.headers['x-token']}
-  Set Global Variable  ${x-token}  ${x-token}
+    [Arguments]    ${URN}
+    Create Session    UR_name    ${HOME_URI}    verify=True
+    ${headers}=    Create Dictionary    Cookie    ${session_id}    X-login    ${LOGIN}    X-password
+    ...    ${PASSW}    X-expires    300000
+    ${resp}=    Get Request    UR_name    /rest/icontrol/nw/150216yg624546    headers=${headers}
+    Should Be Equal As Strings    ${resp.status_code}    200
+    Log    ${resp.headers}
+    ${x-token}=    Get Variable Value    ${resp.headers['x-token']}
+    Set Global Variable    ${x-token}    ${x-token}
