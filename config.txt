@@ -10,7 +10,9 @@ Resource  data.txt
 *** Variables ***
 
 ${HOME_URI}  https://portal-leo.icontrol.com
-${DEFAULT_URN}  /rest/icontrol/nw/150216yg624546
+${DEFAULT_URN}  /rest/icontrol/nw/${SITE_ID}
 
-${LOGIN}  dmitriy
+${LOGIN}  maksym
 ${PASSW}  passwordIC
+
+${SITE_ID}  150216yg624546

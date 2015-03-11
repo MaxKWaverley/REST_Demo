@@ -17,6 +17,20 @@ Generic Get Request
     Log    ${resp.cookies}
     [Return]    ${resp}
 
+Generic Post Request with data
+    [Arguments]    ${URN}    ${DATA}     ${code_resp}
+    Create Session    UR_name    ${HOME_URI}    verify=True
+    ${headers}=    Create Dictionary    Cookie    ${session_id}    X-login    ${LOGIN}    X-token    ${x-token}
+    ${resp}=    Post Request    UR_name    ${URN}    data=${DATA}    headers=${headers}
+    Should Be Equal As Strings    ${resp.status_code}    ${code_resp}
+    Log    ${resp.request.headers}
+    Log    ${resp.request.body}
+    Log    ${resp.headers}
+    Log    ${resp.content}
+    Log    ${resp.status_code}
+    Log    ${resp.cookies}
+    [Return]    ${resp}
+
 Get Session_ID
     [Arguments]    ${URN}
     Create Session    UR_name    ${HOME_URI}    verify=True
@@ -30,7 +44,7 @@ Get X-Token
     Create Session    UR_name    ${HOME_URI}    verify=True
     ${headers}=    Create Dictionary    Cookie    ${session_id}    X-login    ${LOGIN}    X-password
     ...    ${PASSW}    X-expires    300000
-    ${resp}=    Get Request    UR_name    /rest/icontrol/nw/150216yg624546    headers=${headers}
+    ${resp}=    Get Request    UR_name    /rest/icontrol/nw/${SITE_ID}    headers=${headers}
     Should Be Equal As Strings    ${resp.status_code}    200
     Log    ${resp.headers}
     ${x-token}=    Get Variable Value    ${resp.headers['x-token']}
