@@ -17,6 +17,20 @@ Generic Get Request
     Log    ${resp.cookies}
     [Return]    ${resp}
 
+Generic Delete Request
+    [Arguments]    ${URN}    ${code_resp}
+    Create Session    UR_name    ${HOME_URI}    verify=True
+    ${headers}=    Create Dictionary    Cookie    ${session_id}    X-login    ${LOGIN}    X-token
+    ...    ${x-token}
+    ${resp}=    Delete Request    UR_name    ${URN}    headers=${headers}
+    Should Be Equal As Strings    ${resp.status_code}    ${code_resp}
+    Log    ${resp.request.headers}
+    Log    ${resp.headers}
+    Log    ${resp.content}
+    Log    ${resp.status_code}
+    Log    ${resp.cookies}
+    [Return]    ${resp}
+
 Generic Post Request with data
     [Arguments]    ${URN}    ${DATA}     ${code_resp}
     Create Session    UR_name    ${HOME_URI}    verify=True

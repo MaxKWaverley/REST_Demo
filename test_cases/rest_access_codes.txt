@@ -1,0 +1,32 @@
+*** Settings ***
+Documentation     Test suite for Main page
+Resource          ../config.txt
+
+*** Test Cases ***
+Session authentication initialization
+    [Tags]    master
+    Get Session_ID    ${DEFAULT_URN}
+    Get X-Token    ${DEFAULT_URN}
+    Log    ${session_id}
+    Log    ${x-token}
+
+Get Security Panel User Codes list
+    [Tags]    master
+    ${resp}=    Generic Get Request    /rest/icontrol/nw/${SITE_ID}/securityPanel/userCodes/    200
+    Parse Xml    ${resp.content}
+
+Set new code in 'User Code 1'
+    [Tags]    master
+    ${new_code}=    set variable    code=9797
+    ${resp}=    Generic Post Request with data   /rest/icontrol/nw/${SITE_ID}/devices/1/userCodes/1/setCode?${new_code}    ${new_code}    200
+    Log  ${resp}
+    
+Delete Access Code 1
+    [Tags]    master
+    ${resp}=    Generic Delete Request    /rest/icontrol/nw/${SITE_ID}/devices/1/userCodes/1    200
+    Parse Xml    ${resp.content}
+
+
+
+    
+
