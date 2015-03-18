@@ -6,8 +6,7 @@ Resource          ../libs.txt
 Generic Get Request
     [Arguments]    ${URN}    ${code_resp}
     Create Session    UR_name    ${HOME_URI}    verify=True
-    ${headers}=    Create Dictionary    Cookie    ${session_id}    X-login    ${LOGIN}    X-token
-    ...    ${x-token}
+    ${headers}=    Create Dictionary    Cookie    ${session_id}    X-login    ${LOGIN}    X-token    ${x-token}
     ${resp}=    Get Request    UR_name    ${URN}    headers=${headers}
     Should Be Equal As Strings    ${resp.status_code}    ${code_resp}
     Log    ${resp.request.headers}
@@ -26,7 +25,6 @@ Generic Delete Request
     Should Be Equal As Strings    ${resp.status_code}    ${code_resp}
     Log    ${resp.request.headers}
     Log    ${resp.headers}
-    Log    ${resp.content}
     Log    ${resp.status_code}
     Log    ${resp.cookies}
     [Return]    ${resp}
@@ -46,20 +44,24 @@ Generic Post Request with data
     [Return]    ${resp}
 
 Get Session_ID
-    [Arguments]    ${URN}
-    Create Session    UR_name    ${HOME_URI}    verify=True
+    [Arguments]    ${URN}=${DEFAULT_URN}    ${URI}=${HOME_URI}
+    Create Session    UR_name    ${URI}    verify=True
     ${resp}=    Get Request    UR_name    ${URN}
+    Log    ${resp.request.headers}
     Log    ${resp.headers}
+    Log    ${resp.cookies}
     ${session_id}=    Get Variable Value    ${resp.headers['set-cookie'][:47]}
-    Set Global Variable    ${session_id}    ${session_id}
+    Set Suite Variable    ${session_id}    ${session_id}
 
 Get X-Token
-    [Arguments]    ${URN}
-    Create Session    UR_name    ${HOME_URI}    verify=True
+    [Arguments]    ${URN}=${DEFAULT_URN}    ${URI}=${HOME_URI}
+    Create Session    UR_name    ${URI}    verify=True
     ${headers}=    Create Dictionary    Cookie    ${session_id}    X-login    ${LOGIN}    X-password
-    ...    ${PASSW}    X-expires    300000
+    ...    ${PASSW}    X-expires    300000    
     ${resp}=    Get Request    UR_name    /rest/icontrol/nw/${SITE_ID}    headers=${headers}
     Should Be Equal As Strings    ${resp.status_code}    200
+    Log    ${resp.request.headers}
     Log    ${resp.headers}
+    Log    ${resp.cookies}
     ${x-token}=    Get Variable Value    ${resp.headers['x-token']}
-    Set Global Variable    ${x-token}    ${x-token}
+    Set Suite Variable    ${x-token}    ${x-token}

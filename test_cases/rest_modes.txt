@@ -5,15 +5,17 @@ Resource          ../config.txt
 *** Test Cases ***
 Session authentication initialization
     [Tags]    master
-    Get Session_ID    ${DEFAULT_URN}
-    Get X-Token    ${DEFAULT_URN}
+    Get Session_ID    /myhome/rest/icontrol/client/${SITE_ID}/security/shift
+    Get X-Token    /myhome/rest/icontrol/client/${SITE_ID}/security/shift
     Log    ${session_id}
     Log    ${x-token}
 
 Get Modes list
     [Tags]    master
     ${resp}=    Generic Get Request    /myhome/rest/icontrol/client/${SITE_ID}/security/shift    200
-#    Parse Xml    ${resp.content}
+    Log    ${CURDIR}
+    Create File    ${EXECDIR}${/}data.xml
+    Append to File     ${EXECDIR}${/}data.xml    ${resp.content}
 
 Set 'Vacation' mode
     [Tags]    dev
