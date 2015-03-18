@@ -22,8 +22,7 @@ Get Security Panel User Codes list
 Get Details of 'User Code 2'
     [Tags]    master
     ${resp}=    Generic Get Request    /rest/icontrol/nw/${SITE_ID}/securityPanel/userCodes/2   200
-    Create File    ${EXECDIR}${/}user_code2_raw.xml
-    Append to File     ${EXECDIR}${/}user_code2_raw.xml    ${resp.content}
+
 
 Set new code in 'User Code 2'
     [Tags]    master
@@ -35,26 +34,35 @@ Set new code in 'User Code 2'
 
 Change name for 'User Code 2'
     [Tags]    master
-    ${new_name}=    set variable    name=9797
+    ${new_name}=    set variable    name=RealCoolName
     ${resp}=    Generic Post Request with data    /rest/icontrol/nw/${SITE_ID}/devices/1/userCodes/2?${new_name}    ${new_name}    200
 
 Get Details of 'User Code 2' after name was changed
     [Tags]    master
     ${resp}=    Generic Get Request    /rest/icontrol/nw/${SITE_ID}/securityPanel/userCodes/2   200
+    ${parsed_xml}=     Parse XML    ${resp.content}
+    Log    {parsed_xml}
     Create File    ${EXECDIR}${/}user_code2_raw.xml
     Append to File     ${EXECDIR}${/}user_code2_raw.xml    ${resp.content}
+    Create File    ${EXECDIR}${/}user_code2_parsed.xml
+    Save XML    ${parsed_xml}    ${EXECDIR}${/}user_code2_parsed.xml
 
 
-Verification that the same digital code can't be set again for 'User Code 2'
-    [Tags]    master_test
-    ${new_code}=    set variable    code=9797
-    ${resp}=    Generic Post Request with data   /rest/icontrol/nw/${SITE_ID}/devices/1/userCodes/2/setCode?${new_code}    ${new_code}    405
-
-    
 Delete 'User Code 2'
     [Tags]    master1
     ${resp}=    Generic Delete Request    /rest/icontrol/nw/${SITE_ID}/devices/1/userCodes/2    200
+    
 
+XML test
+    [Tags]    max
+    ${XML}    Get File    ${EXECDIR}${/}ex.xml
+    ${real}   Get File    ${EXECDIR}${/}user_code2_raw.xml
+    ${parsed}    Parse XML    ${XML}
+    Log    ${XML}
+    Log    ${parsed}
+    ${text}=	Get Element Text	${parsed}	third
+    ${parsed_real}    Parse XML    ${real}
+    Save XML    ${parsed_real}    ${EXECDIR}${/}parsed_real.xml
 
 
     
