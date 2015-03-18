@@ -5,10 +5,8 @@ Resource          ../config.txt
 *** Test Cases ***
 Session authentication initialization
     [Tags]    master
-    Get Session_ID    ${DEFAULT_URN}
-    Get X-Token    ${DEFAULT_URN}
-    Log    ${session_id}
-    Log    ${x-token}
+    Get Session_ID
+    Get X-Token
 
 Get Security Panel User Codes list
     [Tags]    master
