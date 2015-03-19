@@ -9,11 +9,11 @@ Resource  data.txt
 
 *** Variables ***
 
-# ${HOME_URI}  https://portal-leo.icontrol.com
-${HOME_URI}  https://portal-aristotledev.icontrol.com
+${HOME_URI}  https://portal-leo.icontrol.com
+#  ${HOME_URI}  https://portal-aristotledev.icontrol.com
 ${DEFAULT_URN}  /rest/icontrol/nw/${SITE_ID}
 
 ${LOGIN}  maximk
 ${PASSW}  passwordIC
 
-${SITE_ID}  150310yg230770
+${SITE_ID}  150319yg214121

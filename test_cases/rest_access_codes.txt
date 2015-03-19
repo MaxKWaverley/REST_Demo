@@ -9,7 +9,7 @@ Session authentication initialization
     Get X-Token
 
 Get Security Panel User Codes list
-    [Tags]    master
+    [Tags]    master1
     ${resp}=    Generic Get Request    /rest/icontrol/nw/${SITE_ID}/securityPanel/userCodes/    200
     ${parsed_xml}=     Parse Xml    ${resp.content}
     Create File    ${EXECDIR}${/}user_codes_raw.xml
@@ -20,10 +20,12 @@ Get Security Panel User Codes list
 Get Details of 'User Code 2'
     [Tags]    master
     ${resp}=    Generic Get Request    /rest/icontrol/nw/${SITE_ID}/securityPanel/userCodes/2   200
+    ${parsed_xml}=     Parse XML    ${resp.content}
+    ${Code_Name}=     Set Variable    ${parsed_xml.attrib['name']}
 
 
 Set new code in 'User Code 2'
-    [Tags]    master
+    [Tags]    master1
     ${new_code}=    set variable    code=9797
     ${resp}=    Generic Post Request with data   /rest/icontrol/nw/${SITE_ID}/devices/1/userCodes/2/setCode?${new_code}    ${new_code}    200
     Log  ${resp}
@@ -32,19 +34,16 @@ Set new code in 'User Code 2'
 
 Change name for 'User Code 2'
     [Tags]    master
-    ${new_name}=    set variable    name=RealCoolName
+    ${new_name}=    set variable    name=Setup123123123
     ${resp}=    Generic Post Request with data    /rest/icontrol/nw/${SITE_ID}/devices/1/userCodes/2?${new_name}    ${new_name}    200
 
 Get Details of 'User Code 2' after name was changed
     [Tags]    master
     ${resp}=    Generic Get Request    /rest/icontrol/nw/${SITE_ID}/securityPanel/userCodes/2   200
     ${parsed_xml}=     Parse XML    ${resp.content}
-    Log    {parsed_xml}
-    Create File    ${EXECDIR}${/}user_code2_raw.xml
-    Append to File     ${EXECDIR}${/}user_code2_raw.xml    ${resp.content}
-    Create File    ${EXECDIR}${/}user_code2_parsed.xml
-    Save XML    ${parsed_xml}    ${EXECDIR}${/}user_code2_parsed.xml
+    ${Code_Name}=     Set Variable    ${parsed_xml.attrib['name']}
 
+# ${2nd.attrib['id']}
 
 Delete 'User Code 2'
     [Tags]    master1
