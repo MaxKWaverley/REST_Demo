@@ -21,8 +21,15 @@ Get Details of 'User Code 2'
     [Tags]    master
     ${resp}=    Generic Get Request    /rest/icontrol/nw/${SITE_ID}/securityPanel/userCodes/2   200
     ${parsed_xml}=     Parse XML    ${resp.content}
-    ${Code_Name}=     Set Variable    ${parsed_xml.attrib['name']}
-
+    Log    ${parsed_xml.attrib['name']}
+    Log    ${parsed_xml.attrib['partitions']}
+    Log    ${parsed_xml.attrib['authLvl']}
+    ${input_data}    Get Element    ${resp.content}    functions/function[2]/input
+    Log    ${input_data.attrib['pattern']}
+    Log    ${input_data.attrib['maxLength']}
+    Log    ${input_data.attrib['minLength']}
+    Log    ${input_data.attrib['type']}
+    
 
 Set new code in 'User Code 2'
     [Tags]    master1
