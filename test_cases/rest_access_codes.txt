@@ -8,40 +8,33 @@ Session authentication initialization
     Get Session_ID
     Get X-Token
 
-Get Security Panel User Codes list
-    [Tags]    master1
+Get Security Panel Acces Codes list
+    [Tags]    master
     ${resp}=    Generic Get Request    /rest/icontrol/nw/${SITE_ID}/securityPanel/userCodes/    200
-    ${parsed_xml}=     Parse Xml    ${resp.content}
-    Create File    ${EXECDIR}${/}user_codes_raw.xml
-#    Create File    ${EXECDIR}${/}user_codes_parsed.xml
-    Append to File     ${EXECDIR}${/}user_codes_raw.xml    ${resp.content}
-#    Append to File     ${EXECDIR}${/}user_codes_parsed.xml    ${parsed_xml}
+    ${parsed_XML}=     Parse Xml    ${resp.content}
+    Create File    ${EXECDIR}${/}user_codes_parsed.xml
+    Save XML    ${parsed_XML}    ${EXECDIR}${/}user_codes_parsed.xml
 
-Get Details of 'User Code 2'
+Get Details of 'Standard Code 2'
     [Tags]    master
     ${resp}=    Generic Get Request    /rest/icontrol/nw/${SITE_ID}/securityPanel/userCodes/2   200
     ${parsed_xml}=     Parse XML    ${resp.content}
     Log    ${parsed_xml.attrib['name']}
     Log    ${parsed_xml.attrib['partitions']}
     Log    ${parsed_xml.attrib['authLvl']}
-    ${input_data}    Get Element    ${resp.content}    functions/function[2]/input
-    Log    ${input_data.attrib['pattern']}
-    Log    ${input_data.attrib['maxLength']}
-    Log    ${input_data.attrib['minLength']}
-    Log    ${input_data.attrib['type']}
-    
 
-Set new code in 'User Code 2'
-    [Tags]    master1
-    ${new_code}=    set variable    code=9797
-    ${resp}=    Generic Post Request with data   /rest/icontrol/nw/${SITE_ID}/devices/1/userCodes/2/setCode?${new_code}    ${new_code}    200
-    Log  ${resp}
-    Create File    ${EXECDIR}${/}set_codes_raw.xml
-    Append to File     ${EXECDIR}${/}set_codes_raw.xml    ${resp.content}
-
-Change name for 'User Code 2'
+Get 'Name' input field details/rules for 'Standard Code 2'
     [Tags]    master
-    ${new_name}=    set variable    name=Setup123123123
+    ${resp}=    Generic Get Request    /rest/icontrol/nw/${SITE_ID}/securityPanel/userCodes/2   200
+    ${set_name_input_data}    Get Element    ${resp.content}    functions/function[2]/input
+    Log    ${set_name_input_data.attrib['pattern']}
+    Log    ${set_name_input_data.attrib['maxLength']}
+    Log    ${set_name_input_data.attrib['minLength']}
+    Log    ${set_name_input_data.attrib['type']}
+   
+Set new name for 'Standard Code 2'
+    [Tags]    master
+    ${new_name}=    set variable    name=RF_Test
     ${resp}=    Generic Post Request with data    /rest/icontrol/nw/${SITE_ID}/devices/1/userCodes/2?${new_name}    ${new_name}    200
 
 Get Details of 'User Code 2' after name was changed
@@ -50,23 +43,7 @@ Get Details of 'User Code 2' after name was changed
     ${parsed_xml}=     Parse XML    ${resp.content}
     ${Code_Name}=     Set Variable    ${parsed_xml.attrib['name']}
 
-# ${2nd.attrib['id']}
 
-Delete 'User Code 2'
-    [Tags]    master1
-    ${resp}=    Generic Delete Request    /rest/icontrol/nw/${SITE_ID}/devices/1/userCodes/2    200
-    
-
-XML test
-    [Tags]    max
-    ${XML}    Get File    ${EXECDIR}${/}ex.xml
-    ${real}   Get File    ${EXECDIR}${/}user_code2_raw.xml
-    ${parsed}    Parse XML    ${XML}
-    Log    ${XML}
-    Log    ${parsed}
-    ${text}=	Get Element Text	${parsed}	third
-    ${parsed_real}    Parse XML    ${real}
-    Save XML    ${parsed_real}    ${EXECDIR}${/}parsed_real.xml
 
 
     

@@ -45,4 +45,30 @@ HTTP Test
     [Tags]    test
     ${test_resp}=    Generic Get Request    /rest/icontrol/nw/150216yg624546    200
     Log    ${test_resp}
+    
+# ${2nd.attrib['id']}
+
+Delete 'User Code 2'
+    [Tags]    master1
+    ${resp}=    Generic Delete Request    /rest/icontrol/nw/${SITE_ID}/devices/1/userCodes/2    200
+    
+
+XML test
+    [Tags]    max
+    ${XML}    Get File    ${EXECDIR}${/}ex.xml
+    ${real}   Get File    ${EXECDIR}${/}user_code2_raw.xml
+    ${parsed}    Parse XML    ${XML}
+    Log    ${XML}
+    Log    ${parsed}
+    ${text}=	Get Element Text	${parsed}	third
+    ${parsed_real}    Parse XML    ${real}
+    Save XML    ${parsed_real}    ${EXECDIR}${/}parsed_real.xml
+
+Set new code in 'User Code 2'
+    [Tags]    master1
+    ${new_code}=    set variable    code=9797
+    ${resp}=    Generic Post Request with data   /rest/icontrol/nw/${SITE_ID}/devices/1/userCodes/2/setCode?${new_code}    ${new_code}    200
+    Log  ${resp}
+    Create File    ${EXECDIR}${/}set_codes_raw.xml
+    Append to File     ${EXECDIR}${/}set_codes_raw.xml    ${resp.content}
 
