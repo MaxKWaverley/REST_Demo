@@ -8,7 +8,7 @@ Session authentication initialization
     Get Session_ID
     Get X-Token
 
-Get Security Panel Acces Codes list
+Get Security Panel Access Codes list
     [Tags]    master
     ${resp}=    Generic Get Request    /rest/icontrol/nw/${SITE_ID}/securityPanel/userCodes/    200
     ${parsed_XML}=     Parse Xml    ${resp.content}
@@ -19,29 +19,30 @@ Get Details of 'Standard Code 2'
     [Tags]    master
     ${resp}=    Generic Get Request    /rest/icontrol/nw/${SITE_ID}/securityPanel/userCodes/2   200
     ${parsed_xml}=     Parse XML    ${resp.content}
-    Log    ${parsed_xml.attrib['name']}
-    Log    ${parsed_xml.attrib['partitions']}
-    Log    ${parsed_xml.attrib['authLvl']}
+    Log    Standard Code 2 name is '${parsed_xml.attrib['name']}'    WARN
+    Log    Standard Code 2 in '${parsed_xml.attrib['partitions']}' partition    WARN
+    Log    Standard Code 2 authentication level is '${parsed_xml.attrib['authLvl']}'    WARN
 
 Get 'Name' input field details/rules for 'Standard Code 2'
     [Tags]    master
     ${resp}=    Generic Get Request    /rest/icontrol/nw/${SITE_ID}/securityPanel/userCodes/2   200
     ${set_name_input_data}    Get Element    ${resp.content}    functions/function[2]/input
-    Log    ${set_name_input_data.attrib['pattern']}
-    Log    ${set_name_input_data.attrib['maxLength']}
-    Log    ${set_name_input_data.attrib['minLength']}
-    Log    ${set_name_input_data.attrib['type']}
+    Log    Name input field pattern is '${set_name_input_data.attrib['pattern']}'    WARN
+    Log    Name input field max allowable length is '${set_name_input_data.attrib['maxLength']}' symbols    WARN
+    Log    Name input field min allowable length is '${set_name_input_data.attrib['minLength']}' symbols    WARN
+    Log    Name input field type is '${set_name_input_data.attrib['type']}'    WARN
    
 Set new name for 'Standard Code 2'
     [Tags]    master
     ${new_name}=    set variable    name=RF_Test
     ${resp}=    Generic Post Request with data    /rest/icontrol/nw/${SITE_ID}/devices/1/userCodes/2?${new_name}    ${new_name}    200
 
-Get Details of 'User Code 2' after name was changed
+Verify that 'Standard code 2' has new name
     [Tags]    master
     ${resp}=    Generic Get Request    /rest/icontrol/nw/${SITE_ID}/securityPanel/userCodes/2   200
     ${parsed_xml}=     Parse XML    ${resp.content}
-    ${Code_Name}=     Set Variable    ${parsed_xml.attrib['name']}
+    Log    Standard Code 2 name is '${parsed_xml.attrib['name']}'    WARN
+    Should Be Equal As Strings    ${parsed_xml.attrib['name']}    RF_Test
 
 
 
